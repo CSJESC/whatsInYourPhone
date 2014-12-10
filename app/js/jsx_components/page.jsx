@@ -5,11 +5,12 @@ var React = require('react');
 var apiStore   = require('../stores/apiStore');
 var apiActions = require('../actions/apiActions');
 
+var Graph = require('./graph/graph.jsx');
 
 var Page = React.createClass({
   getInitialState: function () {
     return {
-      fromApiStore: {}
+      fromApiStore: null
     }
   },
 
@@ -28,11 +29,17 @@ var Page = React.createClass({
   },
 
   render: function () {
-    return (
-      <div 
-        className = "view">
-      </div>
-    );
+    if (this.state.fromApiStore) {
+      return (
+        <div 
+          className = "view">
+          <Graph
+            stateFromApiStore = {this.state.fromApiStore} />
+        </div>
+      );
+    } else {
+      return null;
+    }
   }
 });
 
