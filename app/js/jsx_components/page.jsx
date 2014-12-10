@@ -2,6 +2,7 @@
 
 var React = require('react');
 
+var guiStore   = require('../stores/guiStore');
 var apiStore   = require('../stores/apiStore');
 var apiActions = require('../actions/apiActions');
 
@@ -10,22 +11,28 @@ var Graph = require('./graph/graph.jsx');
 var Page = React.createClass({
   getInitialState: function () {
     return {
-      fromApiStore: null
+      fromApiStore: null,
+      fromGuiStore: {}
     }
   },
 
   componentDidMount: function() {
     this.unsubscribeApiStore = apiStore.listen(this.apiStoreChanged);
+    this.unsubscribeGuiStore = guiStore.listen(this.guiStoreChanged);
     apiActions.loadDevice();
   },
 
   componentWillUnmount: function() {
     this.unsubscribeApiStore();
+    this.unsubscribeGuiStore();
   },
 
   apiStoreChanged: function (apiState) {
     this.setState({ fromApiStore: apiState });
-    console.log(this.state.fromApiStore);
+  },
+
+  guiStoreChanged: function (guiState) {
+    this.setState({ fromGuiStore: guiState });
   },
 
   render: function () {
@@ -34,7 +41,8 @@ var Page = React.createClass({
         <div 
           className = "view">
           <Graph
-            stateFromApiStore = {this.state.fromApiStore} />
+            stateFromApiStore = {this.state.fromApiStore}
+            stateFromGuiStore = {this.state.fromGuiStore} />
         </div>
       );
     } else {

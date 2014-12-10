@@ -17,7 +17,6 @@ var port = 3000;
 var paths = {
     index: 'app/index.html',
     scripts: 'app/js/**/*',
-	react:  'app/jsx/**/*',
     styles: 'app/styl/**/*.styl',
     mainStyl: 'app/styl/main.styl',
     dist: 'dist',
@@ -89,7 +88,7 @@ gulp.task('html', function() {
 gulp.task('watch', function () {
     // gulp.watch(paths.index, ['html']);
     // gulp.watch(paths.scripts, ['scripts']);
-    gulp.watch(paths.react, ['scripts']);
+    gulp.watch(paths.scripts, ['scripts']);
     gulp.watch(paths.styles, ['stylus']);
 });
 
