@@ -4,7 +4,7 @@
 
 require('es5-shim-sham'); // polyfills
 var React = require('react');
-var Page  = React.createFactory(require('/js/page.jsx'));
+var Page  = React.createFactory(require('./js/jsx_components/page.jsx'));
 
 // add Page to html
 var content = document.getElementById('content');
