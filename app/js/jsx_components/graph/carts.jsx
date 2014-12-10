@@ -3,7 +3,8 @@
 var React = require('react');
 var guiActions = require('../../actions/guiActions');
 
-var Cart = require('./cart.jsx');
+var Cart  = require('./cart.jsx');
+var Infos = require('./infos.jsx');
 
 var Page = React.createClass({
   numberOfCarts: 3,
@@ -15,11 +16,14 @@ var Page = React.createClass({
       if (i == 0) {
         this.highlightedMaterial = material;
       }
-      carts.push(
-        <Cart 
+      if (material) {
+        carts.push(
+          <Cart 
           key      = {i}
           material = {material} />
-      );
+        );
+      }
+      
     }
     return carts;
   },
@@ -29,15 +33,23 @@ var Page = React.createClass({
   },
 
   render: function () {
+    var isLastCart = (this.props.offset >= this.props.materials.length);
+    var nextLink = (
+      <a 
+        onClick = {this.moveCarts}>
+        next
+      </a>
+    );
     return (
       <div 
         className = "carts">
-        Carts:
+        <h2>Carts:</h2>
+        {isLastCart? null : nextLink}
         {this.getNextCarts()}
-        <a 
-          onClick = {this.moveCarts}>
-          next
-        </a>
+
+        <Infos
+          material = {this.highlightedMaterial} 
+        />
 
       </div>
     );

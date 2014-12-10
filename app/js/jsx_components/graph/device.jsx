@@ -18,7 +18,7 @@ var Page = React.createClass({
     return (
       <div 
         className = "device">
-        device
+        <h2>Device</h2>
         {this.listMaterials()}
       </div>
     );
