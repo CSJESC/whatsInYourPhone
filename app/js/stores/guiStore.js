@@ -10,14 +10,25 @@ var GuiStore = Reflux.createStore({
       allMaterials:     []
     };
 
-    this.listenTo(guiActions.moveCarts, this.onCartMoved);
     this.listenTo(apiActions.loadSuccess, this.onApiDidLoad);
+    this.listenTo(guiActions.moveCarts, this.onCartMoved);
+    this.listenTo(guiActions.skipCarts, this.onSkipCharts);
+
   },
   
-  onCartMoved: function(material) {
-    this.state.deviceMaterials.push(this.state.allMaterials[this.state.cartOffset]);
-    this.state.cartOffset += 1;
-    this.trigger(this.state);
+  onCartMoved: function () {
+    var currentMaterial = this.state.allMaterials[this.state.cartOffset];
+    if (currentMaterial) {
+      this.state.deviceMaterials.push(currentMaterial);
+      this.state.cartOffset += 1;
+      this.trigger(this.state);
+    } else {
+      clearInterval(this.skipIntervall);
+    }
+  },
+
+  onSkipCharts: function () {
+    this.skipIntervall = setInterval(this.onCartMoved.bind(this), 200);
   },
 
   onApiDidLoad: function (materials) {

@@ -13,9 +13,6 @@ var Page = React.createClass({
     var carts = [];
     for (var i = 0; i < this.numberOfCarts; i++) {
       var material = this.props.allMaterials[i + this.props.offset];
-      if (i == 0) {
-        this.highlightedMaterial = material;
-      }
       carts.push(
         <Cart 
         key      = {i}
@@ -26,25 +23,17 @@ var Page = React.createClass({
     return carts;
   },
 
-  moveCarts: function () {
-    guiActions.moveCarts(this.highlightedMaterial);
-  },
-
-  skipCarts: function () {
-    window.setInterval(this.moveCarts, 200);
-  },
-
   render: function () {
     var isLastCart = (this.props.offset >= this.props.allMaterials.length);
     var nextLink = (
       <a 
-        onClick = {this.moveCarts}>
+        onClick = {guiActions.moveCarts}>
         next
       </a>
     );
     var skipLink = (
       <a 
-        onClick = {this.skipCarts}>
+        onClick = {guiActions.skipCarts}>
         skip
       </a>
     );
@@ -57,7 +46,7 @@ var Page = React.createClass({
         {this.getNextCarts()}
 
         <Infos
-          material = {this.highlightedMaterial} 
+          material = {this.props.allMaterials[this.props.offset]} 
         />
         {isLastCart? null : skipLink}
 
