@@ -8,9 +8,11 @@
         "updatedAt": "2014-12-16T20:24:18.945Z",
         "id": "549094f2016adddb6187c916",
         "rating": {
-          "key1": 12,
+          "key1": 5,
           "key2": 5
-        }
+        },
+        "comment": "share is different for each relation between material and country",
+        "share": 0.8 
       },
       {
         "name": "Russia",
@@ -20,7 +22,8 @@
         "rating": {
           "key1": 12,
           "key2": 5
-        }
+        },
+        "share": 0.2
       }
     ],
     "inPart": {
@@ -49,9 +52,10 @@
         "updatedAt": "2014-12-16T20:24:18.945Z",
         "id": "549094f2016adddb6187c916",
         "rating": {
-          "key1": 12,
+          "key1": 5,
           "key2": 5
-        }
+        },
+        "share": 0.5
       },
       {
         "name": "Russia",
@@ -61,7 +65,8 @@
         "rating": {
           "key1": 12,
           "key2": 5
-        }
+        },
+        "share": 0.5
       }
     ],
     "inPart": {

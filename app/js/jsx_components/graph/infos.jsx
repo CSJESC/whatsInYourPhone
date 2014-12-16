@@ -36,9 +36,11 @@ var Infos = React.createClass({
         currentCountryRating       += country.rating[criterion] * this.FACTORS.country[criterion];
         currentCountryRatingLength ++;
       }
-      countryRating += currentCountryRating / currentCountryRatingLength;
+      countryRating += currentCountryRating / currentCountryRatingLength * country.share;
+      console.log(country.share);
     }.bind(this));
     countryRating /= this.props.material.minedIn.length;
+    console.log(countryRating);
 
     finalRating += countryRating;
     // calc average (+1 for country rating)
