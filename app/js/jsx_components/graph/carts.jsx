@@ -12,7 +12,7 @@ var Page = React.createClass({
   getNextCarts: function () {
     var carts = [];
     for (var i = 0; i < this.numberOfCarts; i++) {
-      var material = this.props.materials[i + this.props.offset];
+      var material = this.props.allMaterials[i + this.props.offset];
       if (i == 0) {
         this.highlightedMaterial = material;
       }
@@ -33,7 +33,7 @@ var Page = React.createClass({
   },
 
   render: function () {
-    var isLastCart = (this.props.offset >= this.props.materials.length);
+    var isLastCart = (this.props.offset >= this.props.allMaterials.length);
     var nextLink = (
       <a 
         onClick = {this.moveCarts}>

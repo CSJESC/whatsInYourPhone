@@ -19,7 +19,7 @@ var Page = React.createClass({
   componentDidMount: function() {
     this.unsubscribeApiStore = apiStore.listen(this.apiStoreChanged);
     this.unsubscribeGuiStore = guiStore.listen(this.guiStoreChanged);
-    apiActions.loadDevice();
+    apiActions.loadDeviceMaterials();
   },
 
   componentWillUnmount: function() {

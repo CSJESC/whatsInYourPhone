@@ -1,7 +1,7 @@
-var data    = require('json!./device_data.json');
+var data    = require('json!./device_material_data.json');
 
 var Api = {
-  loadDevice: function() {
+  loadDeviceMaterials: function() {
     return data
   }
 }

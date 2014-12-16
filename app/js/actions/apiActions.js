@@ -1,12 +1,12 @@
 var Reflux = require('reflux');
 var MaterialApi = require('../api/api');
 var apiActions = Reflux.createActions([
-  'loadDevice',
+  'loadDeviceMaterials',
   'loadSuccess'
 ]);
 
-apiActions.loadDevice.preEmit = function() {
-  var device = MaterialApi.loadDevice();
+apiActions.loadDeviceMaterials.preEmit = function() {
+  var device = MaterialApi.loadDeviceMaterials();
   apiActions.loadSuccess(device)
 };
 

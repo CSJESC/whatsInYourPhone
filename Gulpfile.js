@@ -1,4 +1,4 @@
-var SERVER_CONNECTION = 'web@128.199.41.118';
+var SERVER_CONNECTION = 'web@materia.localhorst.io';
 var SERVER_DEST = '~/project';
 
 // Load Gulp and your plugins
