@@ -10,10 +10,11 @@ var Infos = React.createClass({
       'key2': 2,
       'key3': 1
     },
+    country_factor: 1,
     country: {
       'key1': 1,
       'key2': 1
-    }
+    } 
   },
 
   calcRating: function () {
@@ -41,7 +42,7 @@ var Infos = React.createClass({
     }.bind(this));
     countryRating /= this.props.material.minedIn.length;
 
-    finalRating += countryRating;
+    finalRating += countryRating * this.FACTORS.country_factor;
     // calc average (+1 for country rating)
     finalRating /= numberOfCriteria + 1;
     
@@ -54,7 +55,7 @@ var Infos = React.createClass({
         <div 
           className = "infos">
           <h2>Infos</h2>
-          <p>{this.props.material.name} || Rating: {this.calcRating()} </p>
+          <p>{this.props.material.name} || Rating: {this.calcRating()} </p>
         </div>
       );
     } else {
