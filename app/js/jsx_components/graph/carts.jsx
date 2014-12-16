@@ -16,13 +16,11 @@ var Page = React.createClass({
       if (i == 0) {
         this.highlightedMaterial = material;
       }
-      if (material) {
-        carts.push(
-          <Cart 
-          key      = {i}
-          material = {material} />
-        );
-      }
+      carts.push(
+        <Cart 
+        key      = {i}
+        material = {material} />
+      );
       
     }
     return carts;
