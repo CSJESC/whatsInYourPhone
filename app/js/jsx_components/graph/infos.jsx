@@ -36,11 +36,10 @@ var Infos = React.createClass({
         currentCountryRating       += country.rating[criterion] * this.FACTORS.country[criterion];
         currentCountryRatingLength ++;
       }
+      // average contry rating normalized by its share on mining the material
       countryRating += currentCountryRating / currentCountryRatingLength * country.share;
-      console.log(country.share);
     }.bind(this));
     countryRating /= this.props.material.minedIn.length;
-    console.log(countryRating);
 
     finalRating += countryRating;
     // calc average (+1 for country rating)
@@ -55,7 +54,7 @@ var Infos = React.createClass({
         <div 
           className = "infos">
           <h2>Infos</h2>
-          <p>{this.props.material.name} Rating: {this.calcRating()} </p>
+          <p>{this.props.material.name} || Rating: {this.calcRating()} </p>
         </div>
       );
     } else {

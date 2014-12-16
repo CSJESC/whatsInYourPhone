@@ -13,6 +13,7 @@ var Page = React.createClass({
     var carts = [];
     for (var i = 0; i < this.numberOfCarts; i++) {
       var material = this.props.allMaterials[i + this.props.offset];
+      // a cart can have material = null it knows what to do
       carts.push(
         <Cart 
         key      = {i}
@@ -25,31 +26,21 @@ var Page = React.createClass({
 
   render: function () {
     var isLastCart = (this.props.offset >= this.props.allMaterials.length);
+
     var nextLink = (
-      <a 
-        onClick = {guiActions.moveCarts}>
-        next
-      </a>
+      <a onClick = {guiActions.moveCarts}> next </a>
     );
     var skipLink = (
-      <a 
-        onClick = {guiActions.skipCarts}>
-        skip
-      </a>
+      <a onClick = {guiActions.skipCarts}> skip </a>
     );
 
     return (
-      <div 
-        className = "carts">
+      <div className = "carts">
         <h2>Carts:</h2>
         {isLastCart? null : nextLink}
         {this.getNextCarts()}
-
-        <Infos
-          material = {this.props.allMaterials[this.props.offset]} 
-        />
+        <Infos material = {this.props.allMaterials[this.props.offset]} />
         {isLastCart? null : skipLink}
-
       </div>
     );
   }

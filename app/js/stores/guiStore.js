@@ -13,7 +13,6 @@ var GuiStore = Reflux.createStore({
     this.listenTo(apiActions.loadSuccess, this.onApiDidLoad);
     this.listenTo(guiActions.moveCarts, this.onCartMoved);
     this.listenTo(guiActions.skipCarts, this.onSkipCharts);
-
   },
   
   onCartMoved: function () {
