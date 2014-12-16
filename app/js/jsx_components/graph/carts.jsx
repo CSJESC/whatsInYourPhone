@@ -30,6 +30,10 @@ var Page = React.createClass({
     guiActions.moveCarts(this.highlightedMaterial);
   },
 
+  skipCarts: function () {
+    window.setInterval(this.moveCarts, 200);
+  },
+
   render: function () {
     var isLastCart = (this.props.offset >= this.props.allMaterials.length);
     var nextLink = (
@@ -38,6 +42,13 @@ var Page = React.createClass({
         next
       </a>
     );
+    var skipLink = (
+      <a 
+        onClick = {this.skipCarts}>
+        skip
+      </a>
+    );
+
     return (
       <div 
         className = "carts">
@@ -48,6 +59,7 @@ var Page = React.createClass({
         <Infos
           material = {this.highlightedMaterial} 
         />
+        {isLastCart? null : skipLink}
 
       </div>
     );

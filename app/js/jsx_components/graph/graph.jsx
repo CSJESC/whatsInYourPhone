@@ -23,10 +23,10 @@ var Page = React.createClass({
       <div 
         className = "graph">
         <Device 
-          materials = {this.props.stateFromGuiStore.deviceMaterials || []}/>
+          materials = {this.props.fromStore.deviceMaterials || []}/>
         <Carts 
-          allMaterials = {this.props.stateFromApiStore.device}
-          offset = {this.props.stateFromGuiStore.cartOffset || 0}
+          allMaterials = {this.props.fromStore.allMaterials}
+          offset       = {this.props.fromStore.cartOffset || 0}
         />
       </div>
     );
