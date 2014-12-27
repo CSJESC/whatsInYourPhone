@@ -59,7 +59,7 @@ var Infos = React.createClass({
         </div>
       );
     } else {
-      return null;
+      return (<div className = "empty infos" />);
     }
   }
 });

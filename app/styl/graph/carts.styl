@@ -1,0 +1,45 @@
+.carts
+  position     relative
+  padding-left 220px
+
+.cart
+  float            left
+  height           80px
+  width            80px
+  margin           20px 20px 0
+  padding          20px
+  background-color white
+  color            black
+
+.next
+.skip
+  position absolute
+  top      50px
+  cursor   pointer
+
+.next
+  left 0  
+.skip
+  right 0
+  
+.infos
+  position         relative
+  background-color light-grey
+  height           300px
+  padding          20px
+  clear            both
+  
+  &:before
+  &:after
+    content          ' '
+    position         absolute
+    top              0
+    height           100%
+    width            2000px
+    background-color light-grey
+    z-index          -1
+    
+  &:before
+    left  -2000px
+  &:after
+    right -2000px

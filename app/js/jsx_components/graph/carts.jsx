@@ -28,19 +28,28 @@ var Page = React.createClass({
     var isLastCart = (this.props.offset >= this.props.allMaterials.length);
 
     var nextLink = (
-      <a onClick = {guiActions.moveCarts}> next </a>
+      <a 
+        className = "next" 
+        onClick   = {guiActions.moveCarts}
+      > 
+        next
+      </a>
     );
     var skipLink = (
-      <a onClick = {guiActions.skipCarts}> skip </a>
+      <a 
+        className = "skip"
+        onClick   = {guiActions.skipCarts}
+      > 
+        skip 
+      </a>
     );
 
     return (
       <div className = "carts">
-        <h2>Carts:</h2>
         {isLastCart? null : nextLink}
+        {isLastCart? null : skipLink}
         {this.getNextCarts()}
         <Infos material = {this.props.allMaterials[this.props.offset]} />
-        {isLastCart? null : skipLink}
       </div>
     );
   }
