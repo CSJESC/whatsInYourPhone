@@ -22,24 +22,20 @@
 .skip
   right 0
   
-.infos
-  position         relative
-  background-color light-grey
-  height           300px
-  padding          20px
-  clear            both
+// animate carts
+.move-carts-leave 
+  transition 0.6s ease-in
+  position   relative
+  z-index    100
+
+.move-carts-leave.move-carts-leave-active
+  transform   rotate(-30deg) translateY(20px)
+  opacity     0.8
+  margin-left -150px
   
-  &:before
-  &:after
-    content          ' '
-    position         absolute
-    top              0
-    height           100%
-    width            2000px
-    background-color light-grey
-    z-index          -1
-    
-  &:before
-    left  -2000px
-  &:after
-    right -2000px
+.move-carts-enter 
+  transition 0.6s ease-in
+  opacity    0
+  
+.move-carts-enter.move-carts-enter-active
+  opacity    1

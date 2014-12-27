@@ -1,6 +1,7 @@
 "use strict";
 
-var React = require('react');
+var React = require('react/addons');
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var guiActions = require('../../actions/guiActions');
 
 var Cart  = require('./cart.jsx');
@@ -12,11 +13,12 @@ var Page = React.createClass({
   getNextCarts: function () {
     var carts = [];
     for (var i = 0; i < this.numberOfCarts; i++) {
-      var material = this.props.allMaterials[i + this.props.offset];
-      // a cart can have material = null it knows what to do
+      var key      = i + this.props.offset;
+      var material = this.props.allMaterials[key];
+      // a cart can have "material = null" it knows what to do
       carts.push(
         <Cart 
-        key      = {i}
+        key      = {key}
         material = {material} />
       );
       
@@ -48,7 +50,9 @@ var Page = React.createClass({
       <div className = "carts">
         {isLastCart? null : nextLink}
         {isLastCart? null : skipLink}
-        {this.getNextCarts()}
+        <ReactCSSTransitionGroup transitionName = "move-carts">
+          {this.getNextCarts()}
+        </ReactCSSTransitionGroup>
         <Infos material = {this.props.allMaterials[this.props.offset]} />
       </div>
     );
