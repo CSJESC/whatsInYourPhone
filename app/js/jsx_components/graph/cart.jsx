@@ -9,6 +9,7 @@ var Page = React.createClass({
       <div 
         className = "cart">
         {this.props.material? this.props.material.name : '?'}
+        {this.props.material? this.props.material.calculatedRating : ''}
       </div>
     );
   }

@@ -1,6 +1,7 @@
 "use strict";
 
 var React = require('react');
+var guiActions = require('../../actions/guiActions');
 
 var Infos = React.createClass({
 
@@ -17,8 +18,16 @@ var Infos = React.createClass({
     } 
   },
 
-  calcRating: function () {
-    var matRatings = this.props.material.rating;
+  componentWillMount: function () {
+    this.calcRating(this.props.material);
+  },
+
+  componentWillReceiveProps: function (nextProps) {
+    if (nextProps.material && !nextProps.material.calculatedRating) this.calcRating(nextProps.material);
+  },
+
+  calcRating: function (material) {
+    var matRatings = material.rating;
 
     // the rating for the material itself
     var finalRating      = 0;
@@ -30,7 +39,7 @@ var Infos = React.createClass({
 
     // the rating for the countries the material is mined in
     var countryRating = 0;
-    this.props.material.minedIn.forEach(function (country) {
+    material.minedIn.forEach(function (country) {
       var currentCountryRating       = 0;
       var currentCountryRatingLength = 0;
       for (var criterion in country.rating) {
@@ -40,13 +49,13 @@ var Infos = React.createClass({
       // average contry rating normalized by its share on mining the material
       countryRating += currentCountryRating / currentCountryRatingLength * country.share;
     }.bind(this));
-    countryRating /= this.props.material.minedIn.length;
+    countryRating /= material.minedIn.length;
 
     finalRating += countryRating * this.FACTORS.country_factor;
     // calc average (+1 for country rating)
     finalRating /= numberOfCriteria + 1;
     
-    return finalRating;
+    guiActions.ratingCalculated(material, finalRating);
   },
 
   render: function () {
@@ -55,7 +64,7 @@ var Infos = React.createClass({
         <div 
           className = "infos">
           <h2>Infos</h2>
-          <p>{this.props.material.name} || Rating: {this.calcRating()} </p>
+          <p>{this.props.material.name} __ Rating: {this.props.material.calculatedRating} </p>
         </div>
       );
     } else {

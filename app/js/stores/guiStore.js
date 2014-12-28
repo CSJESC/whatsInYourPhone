@@ -13,6 +13,7 @@ var GuiStore = Reflux.createStore({
     this.listenTo(apiActions.loadSuccess, this.onApiDidLoad);
     this.listenTo(guiActions.moveCarts, this.onCartMoved);
     this.listenTo(guiActions.skipCarts, this.onSkipCharts);
+    this.listenTo(guiActions.ratingCalculated, this.onRatingCalculated);
   },
   
   onCartMoved: function () {
@@ -28,6 +29,12 @@ var GuiStore = Reflux.createStore({
 
   onSkipCharts: function () {
     this.skipIntervall = setInterval(this.onCartMoved.bind(this), 200);
+  },
+
+  onRatingCalculated: function (material, rating) {
+    // material should be in this.state.allMaterials
+    material.calculatedRating = rating
+    this.trigger(this.state);
   },
 
   onApiDidLoad: function (materials) {
