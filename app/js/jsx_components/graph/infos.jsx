@@ -10,29 +10,29 @@ var Infos = React.createClass({
       'recycling-rate':  function (rating) {
         // from 0 to 4 (higer is better)
         var normalized = rating * 25; 
-        return normalized * 0.5; // (0.5) + 0.5 + 2 = 3
+        return normalized * 0.2; // (0.2) + 0.2 + 0.6 = 1
       }, 
       'health': function (rating) {
         // from 0 to 4 (lower is better)
         var normalized = (rating - 4) * -25; 
-        return normalized * 0.5; // 0.5 + (0.5) + 2 = 3
+        return normalized * 0.2; // 0.2 + (0.2) + 0.6 = 1
       }
     },
-    country_factor: 2,           // 0.5 + 0.5 + (2) = 3
+    country_factor: 0.6,         // 0.2 + 0.2 + (0.6) = 1
     country: {
       'working-rights': function (rating) {
         // from 1 to 5 (higer is better)
         var normalized = (rating - 1) * 25;
-        return normalized * 1.5; // (1.5) + 0.8 + 0.7 = 3
+        return normalized * 0.5; // (0.5) + 0.3 + 0.2 = 1
       },    
       'human-rights': function (rating) {
         // from 0 to 100 (higer is better)
-        return rating     * 0.8; // 1.5 + (0.8) + 0.7 = 3
+        return rating     * 0.3; // 0.5 + (0.3) + 0.2 = 1
       },     
       'mineral-industry-rating': function (rating) {
         // from 0 to 70 (higer is better)
         var normalized = rating * 1.428;
-        return normalized * 0.7; // 1.5 + 0.8 + (0.7) = 3
+        return normalized * 0.2; // 0.5 + 0.3 + (0.2) = 1
       }
     } 
   },
@@ -51,29 +51,24 @@ var Infos = React.createClass({
 
     // the rating for the material itself
     var finalRating      = 0;
-    var numberOfCriteria = 0;
     for (var criterion in matRatings) {
       finalRating      += this.FACTORS.material[criterion](matRatings[criterion]);
-      numberOfCriteria ++;
     }
 
     // the rating for the countries the material is mined in
     var countryRating = 0;
     material.minedIn.forEach(function (country) {
       var currentCountryRating       = 0;
-      var currentCountryRatingLength = 0;
       for (var criterion in country.rating) {
         currentCountryRating       += this.FACTORS.country[criterion](country.rating[criterion]);
-        currentCountryRatingLength ++;
       }
       // average contry rating normalized by its share on mining the material
-      countryRating += currentCountryRating / currentCountryRatingLength * country.share;
+      countryRating += currentCountryRating * country.share;
     }.bind(this));
     countryRating /= material.minedIn.length;
 
     finalRating += countryRating * this.FACTORS.country_factor;
     // calc average (+1 for country rating)
-    finalRating /= numberOfCriteria + 1;
     finalRating = parseInt(finalRating + 0.5); // round to whole number
     guiActions.ratingCalculated(material, finalRating);
   },
