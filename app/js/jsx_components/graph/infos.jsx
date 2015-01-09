@@ -8,12 +8,12 @@ var Infos = React.createClass({
   FACTORS: {
     material: {
       'recycling-rate':  function (rating) {
-        // from 0 to 4
+        // from 0 to 4 (higer is better)
         var normalized = rating * 25; 
         return normalized * 0.5; // (0.5) + 0.5 + 2 = 3
       }, 
       'health': function (rating) {
-        // from 0 to -4
+        // from 0 to 4 (lower is better)
         var normalized = (rating - 4) * -25; 
         return normalized * 0.5; // 0.5 + (0.5) + 2 = 3
       }
@@ -21,16 +21,16 @@ var Infos = React.createClass({
     country_factor: 2,           // 0.5 + 0.5 + (2) = 3
     country: {
       'working-rights': function (rating) {
-        // from 1 to 5
+        // from 1 to 5 (higer is better)
         var normalized = (rating - 1) * 25;
         return normalized * 1.5; // (1.5) + 0.8 + 0.7 = 3
       },    
       'human-rights': function (rating) {
-        // from 0 to 100
+        // from 0 to 100 (higer is better)
         return rating     * 0.8; // 1.5 + (0.8) + 0.7 = 3
       },     
       'mineral-industry-rating': function (rating) {
-        // from 0 to 70
+        // from 0 to 70 (higer is better)
         var normalized = rating * 1.428;
         return normalized * 0.7; // 1.5 + 0.8 + (0.7) = 3
       }
