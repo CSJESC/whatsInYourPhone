@@ -1,0 +1,73 @@
+[
+  {
+    "name": "Gold",
+    "minedIn": [
+      {
+        "name": "China",
+        "id": "549094f2016adddb6187c916",
+        "rating": {
+          "key1": 5,
+          "key2": 5
+        },
+        "comment": "share is different for each relation between material and country",
+        "share": 0.8 
+      },
+      {
+        "name": "Russia",
+        "id": "549094f2016adddb6187c916",
+        "rating": {
+          "key1": 12,
+          "key2": 5
+        },
+        "share": 0.2
+      }
+    ],
+    "inPart": {
+      "name": "HD",
+      "inDevices": "548b0b1c016adddb6187c913",
+      "id": "548b0b3d016adddb6187c914"
+    },
+    "rating": {
+      "key1": 12,
+      "key2": 5,
+      "key3": 3
+
+    },
+    "id": "548b0b57016adddb6187c915"
+  },
+  {
+    "name": "Silver",
+    "minedIn": [
+      {
+        "name": "China",
+        "id": "549094f2016adddb6187c916",
+        "rating": {
+          "key1": 5,
+          "key2": 5
+        },
+        "share": 0.5
+      },
+      {
+        "name": "Russia",
+        "id": "549094f2016adddb6187c916",
+        "rating": {
+          "key1": 12,
+          "key2": 5
+        },
+        "share": 0.5
+      }
+    ],
+    "inPart": {
+      "name": "HD",
+      "inDevices": "548b0b1c016adddb6187c913",
+      "id": "548b0b3d016adddb6187c914"
+    },
+    "rating": {
+      "key1": 12,
+      "key2": 5,
+      "key3": 3
+
+    },
+    "id": "548b0b57016adddb6187c915"
+  }
+]

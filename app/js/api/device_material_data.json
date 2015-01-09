@@ -1,89 +1,62 @@
 [
   {
-    "name": "Gold",
+    "name": "Max",
     "minedIn": [
       {
-        "name": "China",
-        "createdAt": "2014-12-16T20:24:18.945Z",
-        "updatedAt": "2014-12-16T20:24:18.945Z",
+        "name": "Test",
         "id": "549094f2016adddb6187c916",
         "rating": {
-          "key1": 5,
-          "key2": 5
+          "working-rights": 5,
+          "human-rights":   100,
+          "mineral-industry-rating": 70
         },
-        "comment": "share is different for each relation between material and country",
-        "share": 0.8 
-      },
-      {
-        "name": "Russia",
-        "createdAt": "2014-12-16T20:24:18.945Z",
-        "updatedAt": "2014-12-16T20:24:18.945Z",
-        "id": "549094f2016adddb6187c916",
-        "rating": {
-          "key1": 12,
-          "key2": 5
-        },
-        "share": 0.2
+        "share": 1
       }
     ],
-    "inPart": {
-      "name": "HD",
-      "inDevices": "548b0b1c016adddb6187c913",
-      "createdAt": "2014-12-12T15:35:25.491Z",
-      "updatedAt": "2014-12-12T15:35:25.491Z",
-      "id": "548b0b3d016adddb6187c914"
-    },
     "rating": {
-      "key1": 12,
-      "key2": 5,
-      "key3": 3
-
+      "recycling-rate": 4,
+      "health":         0
     },
-    "createdAt": "2014-12-12T15:35:51.463Z",
-    "updatedAt": "2014-12-12T15:35:51.463Z",
     "id": "548b0b57016adddb6187c915"
   },
   {
-    "name": "Silver",
+    "name": "Min",
+    "minedIn": [
+      {
+        "name": "Test",
+        "id": "549094f2016adddb6187c916",
+        "rating": {
+          "working-rights":          1,
+          "human-rights":            0,
+          "mineral-industry-rating": 0
+        },
+        "share": 1
+      }
+    ],
+    "rating": {
+      "recycling-rate": 0,
+      "health":         4
+    },
+    "id": "548b0b57016adddb6187c915"
+  },
+  {
+    "name": "Gallium",
     "minedIn": [
       {
         "name": "China",
-        "createdAt": "2014-12-16T20:24:18.945Z",
-        "updatedAt": "2014-12-16T20:24:18.945Z",
         "id": "549094f2016adddb6187c916",
         "rating": {
-          "key1": 5,
-          "key2": 5
+          "working-rights":          5,
+          "human-rights":            53,
+          "mineral-industry-rating": 28.7
         },
-        "share": 0.5
-      },
-      {
-        "name": "Russia",
-        "createdAt": "2014-12-16T20:24:18.945Z",
-        "updatedAt": "2014-12-16T20:24:18.945Z",
-        "id": "549094f2016adddb6187c916",
-        "rating": {
-          "key1": 12,
-          "key2": 5
-        },
-        "share": 0.5
+        "share": 1
       }
     ],
-    "inPart": {
-      "name": "HD",
-      "inDevices": "548b0b1c016adddb6187c913",
-      "createdAt": "2014-12-12T15:35:25.491Z",
-      "updatedAt": "2014-12-12T15:35:25.491Z",
-      "id": "548b0b3d016adddb6187c914"
-    },
     "rating": {
-      "key1": 12,
-      "key2": 5,
-      "key3": 3
-
+      "recycling-rate": 0,
+      "health":         2
     },
-    "createdAt": "2014-12-12T15:35:51.463Z",
-    "updatedAt": "2014-12-12T15:35:51.463Z",
     "id": "548b0b57016adddb6187c915"
   }
 ]

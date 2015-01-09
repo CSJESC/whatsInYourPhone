@@ -7,14 +7,33 @@ var Infos = React.createClass({
 
   FACTORS: {
     material: {
-      'key1': 1,
-      'key2': 2,
-      'key3': 1
+      'recycling-rate':  function (rating) {
+        // from 0 to 4
+        var normalized = rating * 25; 
+        return normalized * 0.5; // (0.5) + 0.5 + 2 = 3
+      }, 
+      'health': function (rating) {
+        // from 0 to -4
+        var normalized = (rating - 4) * -25; 
+        return normalized * 0.5; // 0.5 + (0.5) + 2 = 3
+      }
     },
-    country_factor: 1,
+    country_factor: 2,           // 0.5 + 0.5 + (2) = 3
     country: {
-      'key1': 1,
-      'key2': 1
+      'working-rights': function (rating) {
+        // from 1 to 5
+        var normalized = (rating - 1) * 25;
+        return normalized * 1.5; // (1.5) + 0.8 + 0.7 = 3
+      },    
+      'human-rights': function (rating) {
+        // from 0 to 100
+        return rating     * 0.8; // 1.5 + (0.8) + 0.7 = 3
+      },     
+      'mineral-industry-rating': function (rating) {
+        // from 0 to 70
+        var normalized = rating * 1.428;
+        return normalized * 0.7; // 1.5 + 0.8 + (0.7) = 3
+      }
     } 
   },
 
@@ -23,7 +42,8 @@ var Infos = React.createClass({
   },
 
   componentWillReceiveProps: function (nextProps) {
-    if (nextProps.material && !nextProps.material.calculatedRating) this.calcRating(nextProps.material);
+    if (nextProps.material && typeof(nextProps.material.calculatedRating) == 'undefined') 
+      this.calcRating(nextProps.material);
   },
 
   calcRating: function (material) {
@@ -33,7 +53,7 @@ var Infos = React.createClass({
     var finalRating      = 0;
     var numberOfCriteria = 0;
     for (var criterion in matRatings) {
-      finalRating      += matRatings[criterion] * this.FACTORS.material[criterion];
+      finalRating      += this.FACTORS.material[criterion](matRatings[criterion]);
       numberOfCriteria ++;
     }
 
@@ -43,7 +63,7 @@ var Infos = React.createClass({
       var currentCountryRating       = 0;
       var currentCountryRatingLength = 0;
       for (var criterion in country.rating) {
-        currentCountryRating       += country.rating[criterion] * this.FACTORS.country[criterion];
+        currentCountryRating       += this.FACTORS.country[criterion](country.rating[criterion]);
         currentCountryRatingLength ++;
       }
       // average contry rating normalized by its share on mining the material
@@ -54,7 +74,7 @@ var Infos = React.createClass({
     finalRating += countryRating * this.FACTORS.country_factor;
     // calc average (+1 for country rating)
     finalRating /= numberOfCriteria + 1;
-    
+    finalRating = parseInt(finalRating + 0.5); // round to whole number
     guiActions.ratingCalculated(material, finalRating);
   },
 
