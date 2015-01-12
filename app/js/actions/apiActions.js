@@ -6,8 +6,7 @@ var apiActions = Reflux.createActions([
 ]);
 
 apiActions.loadDeviceMaterials.preEmit = function() {
-  var materials = MaterialApi.loadDeviceMaterials();
-  apiActions.loadSuccess(materials)
+   MaterialApi.loadDeviceMaterials().then(apiActions.loadSuccess,apiActions.error);
 };
 
 module.exports = apiActions;

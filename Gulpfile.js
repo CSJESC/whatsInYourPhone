@@ -14,6 +14,12 @@ var isProduction = environment === 'production';
 var webpackConfig = require('./webpack.config')[environment];
 
 var port = 3000;
+var config = {
+  proxyEnabled: true,
+  backendURL: 'http://materia.localhorst.io/',
+  routes: ['api/v1'],
+  cacheDir: '.cache'
+};
 var paths = {
     index: 'app/index.html',
     scripts: 'app/js/**/*',
@@ -43,6 +49,28 @@ gulp.task('server', function() {
     port: port,
     livereload: {
       port: 35729
+    },
+    middleware: function connect(connect, o) {
+        if (config.proxyEnabled === true) {
+            var proxy = require('proxy-middleware'),
+                memorize = require('connect-memorize'),
+                url = require('url');
+            
+            var baseURL = config.backendURL,
+                middlewares = [];
+
+            config.routes.forEach(function(route) {
+                middlewares.push(memorize({
+                    match: '/' + route, // handle only urls starting with $expression
+                    memorize: true, // store stuff
+                    recall: true, // serve previously stored
+                    storageDir: config.cacheDir
+                }));
+                middlewares.push(connect().use('/' + route, proxy(url.parse(baseURL + route))));
+            });
+            
+            return middlewares;
+        }
     }
   });
 });

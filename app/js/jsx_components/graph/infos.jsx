@@ -7,12 +7,12 @@ var Infos = React.createClass({
 
   FACTORS: {
     material: {
-      'recycling-rate':  function (rating) {
+      'recyclingRating':  function (rating) {
         // from 0 to 4 (higer is better)
         var normalized = rating * 25; 
         return normalized * 0.2; // (0.2) + 0.2 + 0.6 = 1
       }, 
-      'health': function (rating) {
+      'healthRating': function (rating) {
         // from 0 to 4 (lower is better)
         var normalized = (rating - 4) * -25; 
         return normalized * 0.2; // 0.2 + (0.2) + 0.6 = 1
@@ -20,16 +20,16 @@ var Infos = React.createClass({
     },
     country_factor: 0.6,         // 0.2 + 0.2 + (0.6) = 1
     country: {
-      'working-rights': function (rating) {
+      'workingConditionsRating': function (rating) {
         // from 1 to 5 (higer is better)
         var normalized = (rating - 1) * 25;
         return normalized * 0.5; // (0.5) + 0.3 + 0.2 = 1
       },    
-      'human-rights': function (rating) {
+      'humanRightsRating': function (rating) {
         // from 0 to 100 (higer is better)
         return rating     * 0.3; // 0.5 + (0.3) + 0.2 = 1
       },     
-      'mineral-industry-rating': function (rating) {
+      'mineralIndustryRating': function (rating) {
         // from 0 to 70 (higer is better)
         var normalized = rating * 1.428;
         return normalized * 0.2; // 0.5 + 0.3 + (0.2) = 1
@@ -47,22 +47,26 @@ var Infos = React.createClass({
   },
 
   calcRating: function (material) {
-    var matRatings = material.rating;
+    var matRatings = material;
 
     // the rating for the material itself
     var finalRating      = 0;
     for (var criterion in matRatings) {
-      finalRating      += this.FACTORS.material[criterion](matRatings[criterion]);
+      if (Object.keys(this.FACTORS.material).indexOf(criterion) !== -1)
+        finalRating      += this.FACTORS.material[criterion](matRatings[criterion]);
     }
 
     // the rating for the countries the material is mined in
     var countryRating = 0;
     material.minedIn.forEach(function (country) {
       var currentCountryRating       = 0;
-      for (var criterion in country.rating) {
-        currentCountryRating       += this.FACTORS.country[criterion](country.rating[criterion]);
+      for (var criterion in country) {
+        if (Object.keys(this.FACTORS.country).indexOf(criterion) !== -1){
+          currentCountryRating       += this.FACTORS.country[criterion](country[criterion]);
+        }
       }
       // average contry rating normalized by its share on mining the material
+      // TODO: should add country.share to the API ???
       countryRating += currentCountryRating * country.share;
     }.bind(this));
     countryRating /= material.minedIn.length;
