@@ -77,8 +77,7 @@ var Infos = React.createClass({
         }
       }
       // average contry rating normalized by its share on mining the material
-      // TODO: should add country.share to the API!
-      countryRating += currentCountryRating //* country.share;
+      countryRating += currentCountryRating * country.share;
     }.bind(this));
     countryRating /= material.minedIn.length;
 
