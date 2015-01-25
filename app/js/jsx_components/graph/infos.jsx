@@ -37,6 +37,14 @@ var Infos = React.createClass({
     } 
   },
 
+  COLORS: {
+    green:      90,
+    lightGreen: 70,
+    yellow:     50,
+    orange:     30,
+    red:        0
+  },
+
   componentWillMount: function () {
     this.calcRating(this.props.material);
   },
@@ -74,7 +82,18 @@ var Infos = React.createClass({
 
     finalRating += countryRating * this.FACTORS.country_factor;
     finalRating = parseInt(finalRating + 0.5); // round to whole number
-    guiActions.ratingCalculated(material, finalRating);
+
+    var color = this.getColor(finalRating);
+    guiActions.ratingCalculated(material, finalRating, color);
+  },
+
+  getColor: function (rating) {
+    var colorName = 'red'
+    for (var color in this.COLORS) {
+      if (rating >= this.COLORS[color] && this.COLORS[color] > this.COLORS[colorName])
+        colorName = color
+    }
+    return colorName
   },
 
   render: function () {

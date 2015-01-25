@@ -31,9 +31,10 @@ var GuiStore = Reflux.createStore({
     this.skipIntervall = setInterval(this.onCartMoved.bind(this), 200);
   },
 
-  onRatingCalculated: function (material, rating) {
+  onRatingCalculated: function (material, rating, color) {
     // material should be in this.state.allMaterials
     material.calculatedRating = rating
+    material.color            = color
     this.trigger(this.state);
   },
 

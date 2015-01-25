@@ -7,9 +7,11 @@ var Page = React.createClass({
   listMaterials: function () {
     return this.props.materials.map(function(material, i) {
       return (
-        <p key = {i}>
+        <li 
+          key       = {i}
+          className = {'device-material ' + material.color}>
           {material.name}
-        </p>
+        </li>
       );
     });
   },
@@ -18,8 +20,9 @@ var Page = React.createClass({
     return (
       <div 
         className = "device">
-        <h2>Device</h2>
+        <ul className = "device-materials">
         {this.listMaterials()}
+        </ul>
       </div>
     );
   }
