@@ -54,7 +54,7 @@ var GuiStore = Reflux.createStore({
   },
 
   onSkipCharts: function () {
-    this.skipIntervall = setInterval(this.onCartMoved.bind(this), 200);
+    this.skipIntervall = setInterval(this.onCartMoved.bind(this), 800);
   },
 
   onRatingCalculated: function (material, rating, color, countryRating) {

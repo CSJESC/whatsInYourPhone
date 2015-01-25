@@ -2,7 +2,7 @@
   position         absolute
   bottom           0
   width            200px
-  height           300px
+  height           450px
   background-color grey
   z-index          10
   
@@ -18,15 +18,20 @@
     text-align center
     padding    4px
     color      black
-    font-size  10px
-    overflow   hidden
+    font-size  0
+    height     5px
+    border-top 1px solid grey
+    transition 0.1s
+    &:hover
+      height    20px
+      font-size 16px
     
 // animate materials
 .slide-up-enter 
   transition 0.6s ease-in
-  height     0
+  height     0 !important
   padding    0 !important
   
 .slide-up-enter.slide-up-enter-active
-  height     18px
+  height     5px
   padding    4px !important

@@ -4,23 +4,39 @@ var React = require('react');
 
 var UsedIn = React.createClass({
 
-  render: function () {
-    var parts = this.props.usedIn.map(function(partName) {
+  listParts: function (parts) {
+    var partList = this.props.usedIn.map(function(part) {
       return (
         <li 
-          key       = {partName}
+          key       = {part.name}
           className = "part-name">
-          {partName}
+          {part.name}
         </li>
       );
     });
+
+    if (partList.length === 0) {
+      partList[0] = (
+        <li 
+          key       = 'unkown'
+          className = "part-name">
+          ????
+        </li>
+      )
+    }
+
+    return partList
+  },
+
+  render: function () {
+    
 
     return (
       <ul className = "used-in">
         <h3 className ="used-in-title">
           Used In:
         </h3>
-        {parts}
+        {this.listParts()}
       </ul>
     );
   }
