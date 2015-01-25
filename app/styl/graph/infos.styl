@@ -35,13 +35,14 @@
   .rating
     margin   0
     padding  0
-    overflow hidden
+    position relative
     
     .rating-item
       list-style none
       clear      left
       margin     5px 0
       overflow   hidden
+      cursor     pointer
       
       dd
         background-color white
@@ -58,3 +59,19 @@
         width      100px
         margin-right     10px
         text-align right
+    
+    .popup
+      position         absolute
+      top              -100px
+      left             -50px
+      width            250px;
+      background-color light-grey
+      padding          10px
+      z-index          20
+      
+      .close
+        position absolute
+        top      5px
+        right    5px
+        background-color red
+        cursor           pointer

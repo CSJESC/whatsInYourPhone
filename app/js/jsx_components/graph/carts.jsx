@@ -67,8 +67,9 @@ var Page = React.createClass({
         </ReactCSSTransitionGroup>
 
         <Infos 
-          material = {currentMaterial} 
-          colors   = {this.COLORS}
+          material    = {currentMaterial} 
+          colors      = {this.COLORS}
+          ratingPopup = {this.props.ratingPopup}
         />
         <StopLight 
           color       = {currentMaterial? currentMaterial.color : null} 

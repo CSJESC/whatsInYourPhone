@@ -17,7 +17,7 @@ var Page = React.createClass({
           allMaterials   = {this.props.fromStore.allMaterials}
           offset         = {this.props.fromStore.cartOffset}
           stopLightPopup = {this.props.fromStore.stopLightPopupOpen}
-          ratingPopup    = {this.props.fromStore.ratingPopup}
+          ratingPopup    = {this.props.fromStore.ratingPopupOpen}
         />
       </div>
     );

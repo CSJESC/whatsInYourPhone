@@ -8,7 +8,8 @@ var GuiStore = Reflux.createStore({
       cartOffset:         0,
       deviceMaterials:    [],
       allMaterials:       [],
-      stopLightPopupOpen: false
+      stopLightPopupOpen: false,
+      ratingPopupOpen:    false
     };
 
     this.listenTo(apiActions.loadSuccess,           this.onApiDidLoad);
@@ -17,6 +18,18 @@ var GuiStore = Reflux.createStore({
     this.listenTo(guiActions.ratingCalculated,      this.onRatingCalculated);
     this.listenTo(guiActions.stopLightClicked,      this.onStopLightClicked);
     this.listenTo(guiActions.stopLightCloseClicked, this.onStopLightClose);
+    this.listenTo(guiActions.openRatingPopup,       this.onOpenRatingPopup);
+    this.listenTo(guiActions.closeRatingPopup,      this.onCloseRatingPopup);
+  },
+
+  onOpenRatingPopup: function () {
+    this.state.ratingPopupOpen = true;
+    this.trigger(this.state);
+  },
+
+  onCloseRatingPopup: function () {
+    this.state.ratingPopupOpen = false;
+    this.trigger(this.state);
   },
 
   onStopLightClicked: function () {

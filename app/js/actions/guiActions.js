@@ -5,7 +5,9 @@ var guiActions = Reflux.createActions([
   'skipCarts',
   'ratingCalculated',
   'stopLightClicked',
-  'stopLightCloseClicked'
+  'stopLightCloseClicked',
+  'openRatingPopup',
+  'closeRatingPopup'
 ]);
 
 module.exports = guiActions;

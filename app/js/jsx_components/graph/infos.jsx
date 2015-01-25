@@ -97,9 +97,10 @@ var Infos = React.createClass({
           className = "infos">
           <h2>{this.props.material.name}</h2>
           <RatingInfo 
-            material = {this.props.material} 
-            getColor = {this.getColor}
-            colors   = {this.colors}
+            material  = {this.props.material} 
+            getColor  = {this.getColor}
+            colors    = {this.colors}
+            popupOpen = {this.props.ratingPopup}
           />
           <UsedInList usedIn   = {this.props.material.usedIn} />
         </div>
