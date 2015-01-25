@@ -1,11 +1,12 @@
 "use strict";
 
-var React = require('react');
+var React = require('react/addons');
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 var Page = React.createClass({
 
   listMaterials: function () {
-    return this.props.materials.map(function(material, i) {
+    var list = this.props.materials.map(function(material, i) {
       return (
         <li 
           key       = {i}
@@ -14,6 +15,9 @@ var Page = React.createClass({
         </li>
       );
     });
+
+    list.reverse();
+    return list
   },
 
   render: function () {
@@ -21,7 +25,9 @@ var Page = React.createClass({
       <div 
         className = "device">
         <ul className = "device-materials">
-        {this.listMaterials()}
+          <ReactCSSTransitionGroup transitionName = "slide-up">
+            {this.listMaterials()}
+          </ReactCSSTransitionGroup>
         </ul>
       </div>
     );
