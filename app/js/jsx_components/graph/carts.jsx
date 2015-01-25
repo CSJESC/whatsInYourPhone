@@ -4,8 +4,10 @@ var React = require('react/addons');
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var guiActions = require('../../actions/guiActions');
 
-var Cart  = require('./cart.jsx');
-var Infos = require('./infos.jsx');
+var Cart      = require('./cart.jsx');
+var Infos     = require('./infos.jsx');
+var StopLight = require('./stopLight.jsx');
+
 
 var Page = React.createClass({
   numberOfCarts: 3,
@@ -46,6 +48,8 @@ var Page = React.createClass({
       </a>
     );
 
+    var currentMaterial = this.props.allMaterials[this.props.offset];
+
     return (
       <div className = "carts">
         {isLastCart? null : nextLink}
@@ -53,7 +57,9 @@ var Page = React.createClass({
         <ReactCSSTransitionGroup transitionName = "move-carts">
           {this.getNextCarts()}
         </ReactCSSTransitionGroup>
-        <Infos material = {this.props.allMaterials[this.props.offset]} />
+
+        <Infos material = {currentMaterial} />
+        <StopLight color = {currentMaterial? currentMaterial.color : null} />
       </div>
     );
   }
