@@ -39,14 +39,6 @@ var Infos = React.createClass({
     } 
   },
 
-  COLORS: {
-    green:      90,
-    lightGreen: 70,
-    yellow:     50,
-    orange:     30,
-    red:        0
-  },
-
   componentWillMount: function () {
     this.calcRating(this.props.material);
   },
@@ -89,9 +81,10 @@ var Infos = React.createClass({
   },
 
   getColor: function (rating) {
+    var colors = this.props.colors
     var colorName = 'red'
-    for (var color in this.COLORS) {
-      if (rating >= this.COLORS[color] && this.COLORS[color] > this.COLORS[colorName])
+    for (var color in colors) {
+      if (rating >= colors[color] && colors[color] > colors[colorName])
         colorName = color
     }
     return colorName

@@ -12,6 +12,14 @@ var StopLight = require('./stopLight.jsx');
 var Page = React.createClass({
   numberOfCarts: 3,
 
+  COLORS: {
+    green:      90,
+    lightGreen: 70,
+    yellow:     50,
+    orange:     30,
+    red:        0
+  },
+
   getNextCarts: function () {
     var carts = [];
     for (var i = 0; i < this.numberOfCarts; i++) {
@@ -58,8 +66,15 @@ var Page = React.createClass({
           {this.getNextCarts()}
         </ReactCSSTransitionGroup>
 
-        <Infos material = {currentMaterial} />
-        <StopLight color = {currentMaterial? currentMaterial.color : null} />
+        <Infos 
+          material = {currentMaterial} 
+          colors   = {this.COLORS}
+        />
+        <StopLight 
+          color       = {currentMaterial? currentMaterial.color : null} 
+          colors      = {this.COLORS}
+          popupIsOpen = {this.props.stopLightPopup}
+        />
       </div>
     );
   }

@@ -14,8 +14,10 @@ var Page = React.createClass({
         <Device 
           materials = {this.props.fromStore.deviceMaterials}/>
         <Carts 
-          allMaterials = {this.props.fromStore.allMaterials}
-          offset       = {this.props.fromStore.cartOffset}
+          allMaterials   = {this.props.fromStore.allMaterials}
+          offset         = {this.props.fromStore.cartOffset}
+          stopLightPopup = {this.props.fromStore.stopLightPopupOpen}
+          ratingPopup    = {this.props.fromStore.ratingPopup}
         />
       </div>
     );

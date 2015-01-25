@@ -3,7 +3,9 @@ var MaterialApi = require('../api/api');
 var guiActions = Reflux.createActions([
   'moveCarts',
   'skipCarts',
-  'ratingCalculated'
+  'ratingCalculated',
+  'stopLightClicked',
+  'stopLightCloseClicked'
 ]);
 
 module.exports = guiActions;

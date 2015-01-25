@@ -5,15 +5,28 @@ var guiActions = require('../actions/guiActions');
 var GuiStore = Reflux.createStore({
   init: function() {
     this.state = {
-      cartOffset:       0,
-      deviceMaterials:  [],
-      allMaterials:     []
+      cartOffset:         0,
+      deviceMaterials:    [],
+      allMaterials:       [],
+      stopLightPopupOpen: false
     };
 
-    this.listenTo(apiActions.loadSuccess, this.onApiDidLoad);
-    this.listenTo(guiActions.moveCarts, this.onCartMoved);
-    this.listenTo(guiActions.skipCarts, this.onSkipCharts);
-    this.listenTo(guiActions.ratingCalculated, this.onRatingCalculated);
+    this.listenTo(apiActions.loadSuccess,           this.onApiDidLoad);
+    this.listenTo(guiActions.moveCarts,             this.onCartMoved);
+    this.listenTo(guiActions.skipCarts,             this.onSkipCharts);
+    this.listenTo(guiActions.ratingCalculated,      this.onRatingCalculated);
+    this.listenTo(guiActions.stopLightClicked,      this.onStopLightClicked);
+    this.listenTo(guiActions.stopLightCloseClicked, this.onStopLightClose);
+  },
+
+  onStopLightClicked: function () {
+    this.state.stopLightPopupOpen = true;
+    this.trigger(this.state);
+  },
+
+  onStopLightClose: function () {
+    this.state.stopLightPopupOpen = false;
+    this.trigger(this.state);
   },
   
   onCartMoved: function () {
