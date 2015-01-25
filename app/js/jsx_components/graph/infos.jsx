@@ -1,7 +1,9 @@
 "use strict";
 
-var React = require('react');
+var React      = require('react');
 var guiActions = require('../../actions/guiActions');
+
+var UsedInList = require('./infos/usedIn.jsx');
 
 var Infos = React.createClass({
 
@@ -101,8 +103,8 @@ var Infos = React.createClass({
       return (
         <div 
           className = "infos">
-          <h2>Infos</h2>
-          <p>{this.props.material.name} __ Rating: {this.props.material.calculatedRating} </p>
+          <h2>{this.props.material.name}</h2>
+          <UsedInList usedIn = {this.props.material.usedIn} />
         </div>
       );
     } else {

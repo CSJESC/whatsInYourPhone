@@ -12,7 +12,6 @@ var Page = React.createClass({
       <div 
         className = {'cart ' + color}>
         {this.props.material? this.props.material.name : '?'}
-        {this.props.material? this.props.material.calculatedRating : ''}
       </div>
     );
   }
