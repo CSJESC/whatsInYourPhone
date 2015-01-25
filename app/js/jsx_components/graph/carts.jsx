@@ -16,7 +16,7 @@ var Page = React.createClass({
     green:      90,
     lightGreen: 70,
     yellow:     50,
-    orange:     30,
+    orange:     25,
     red:        0
   },
 

@@ -4,6 +4,7 @@ var React      = require('react');
 var guiActions = require('../../actions/guiActions');
 
 var UsedInList = require('./infos/usedIn.jsx');
+var RatingInfo = require('./infos/rating.jsx');
 
 var Infos = React.createClass({
 
@@ -71,13 +72,12 @@ var Infos = React.createClass({
       // average contry rating normalized by its share on mining the material
       countryRating += currentCountryRating * country.share;
     }.bind(this));
-    countryRating /= material.minedIn.length;
 
     finalRating += countryRating * this.FACTORS.country_factor;
     finalRating = parseInt(finalRating + 0.5); // round to whole number
 
     var color = this.getColor(finalRating);
-    guiActions.ratingCalculated(material, finalRating, color);
+    guiActions.ratingCalculated(material, finalRating, color, countryRating);
   },
 
   getColor: function (rating) {
@@ -96,7 +96,12 @@ var Infos = React.createClass({
         <div 
           className = "infos">
           <h2>{this.props.material.name}</h2>
-          <UsedInList usedIn = {this.props.material.usedIn} />
+          <RatingInfo 
+            material = {this.props.material} 
+            getColor = {this.getColor}
+            colors   = {this.colors}
+          />
+          <UsedInList usedIn   = {this.props.material.usedIn} />
         </div>
       );
     } else {
