@@ -3,8 +3,9 @@
 var React      = require('react');
 var guiActions = require('../../actions/guiActions');
 
-var UsedInList = require('./infos/usedIn.jsx');
-var RatingInfo = require('./infos/rating.jsx');
+var UsedInList  = require('./infos/usedIn.jsx');
+var Description = require('./infos/description.jsx');
+var RatingInfo  = require('./infos/rating.jsx');
 
 var Infos = React.createClass({
 
@@ -102,7 +103,11 @@ var Infos = React.createClass({
             colors    = {this.colors}
             popupOpen = {this.props.ratingPopup}
           />
-          <UsedInList usedIn   = {this.props.material.usedIn} />
+          <Description
+            description = {this.props.material.description}
+            links       = {this.props.material.links}
+          />
+          <UsedInList usedIn = {this.props.material.usedIn} />
         </div>
       );
     } else {
