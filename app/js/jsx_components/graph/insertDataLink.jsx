@@ -15,6 +15,9 @@ var InsertDataLink = React.createClass({
           onClick   = {this.closePopup}>
           &#10005;
         </a>
+        <a href = "http://materia.localhorst.io/auth/twitter" target = "_blank">
+          twitter hardcoded
+        </a>
         </div>
       )
     } else {
