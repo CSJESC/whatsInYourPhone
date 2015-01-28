@@ -65,9 +65,9 @@ var GuiStore = Reflux.createStore({
     this.trigger(this.state);
   },
 
-  onApiDidLoad: function (materials) {
+  onApiDidLoad: function (materials, err) {
     this.state.allMaterials = materials
-    this.trigger(this.state);
+    this.trigger(this.state)
   },
 });
 

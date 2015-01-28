@@ -1,11 +1,25 @@
 .stop-Light
-  position   absolute
-  bottom     450px
-  width      10px
-  height     230px
-  background #000
-  cursor     pointer
-  z-index    10
+  pole-length = 90px
+  
+  position      absolute
+  bottom        470px
+  margin-bottom pole-length
+  width         50px
+  height        200px
+  border-radius 5px
+  background    dark-grey
+  cursor        pointer
+  z-index       10
+  
+  &:after
+    content          ' '
+    position         absolute
+    bottom           - pole-length
+    left             50%
+    margin-left      -6px
+    width            12px
+    height           pole-length
+    background-color dark-grey
   
   .popup
     position         absolute

@@ -18,7 +18,6 @@ var Page = React.createClass({
   },
 
   componentWillUnmount: function() {
-    this.unsubscribeApiStore();
     this.unsubscribeGuiStore();
   },
 

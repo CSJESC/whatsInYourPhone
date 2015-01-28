@@ -1,4 +1,3 @@
-var data    = require('json!./device_material_data.json');
 var reqwest = require('reqwest');
 var url = require('url');
 
