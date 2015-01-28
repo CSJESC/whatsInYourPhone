@@ -13,11 +13,11 @@ var Page = React.createClass({
   numberOfCarts: 3,
 
   COLORS: {
-    green:      90,
-    lightGreen: 70,
-    yellow:     50,
+    red:        0,
     orange:     25,
-    red:        0
+    yellow:     50,
+    lightGreen: 70,
+    green:      90,
   },
 
   getNextCarts: function () {

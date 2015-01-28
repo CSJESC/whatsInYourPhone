@@ -10,8 +10,8 @@ var StopLight = React.createClass({
     guiActions.stopLightCloseClicked();
   },
 
-  render: function () {
-    var popup = (
+  popup: function () {
+    return (
       <div className = "popup">
         <a 
           className = "close"
@@ -29,12 +29,26 @@ var StopLight = React.createClass({
         </p>
       </div>
     )
+  },
+
+  render: function () {
+    var lights = []
+    for (var color in this.props.colors) {
+      var showColor = (color == this.props.color) ? color : ''
+      lights.push(
+        <span
+          className = {showColor + ' light'}
+        />
+      )
+    }
+
     return (
       <div 
-        className = {'stop-Light ' + this.props.color}
+        className = "stop-Light"
         onClick   = {guiActions.stopLightClicked}
       >
-        {this.props.popupIsOpen? popup : null}
+        {lights}
+        {this.props.popupIsOpen? this.popup() : null}
       </div>
     );
   }
