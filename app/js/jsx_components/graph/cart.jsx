@@ -10,8 +10,14 @@ var Page = React.createClass({
       color = this.props.material.color
     return (
       <div 
-        className = {'cart ' + color}>
-        {this.props.material? this.props.material.name : '?'}
+        className = "cart">
+        <img 
+          className = {'cart-img' + color}
+          src       = "./img/miningCartWhite.svg"
+        />
+        <p className = "cart-name">
+          {this.props.material? this.props.material.name : '?'}
+        </p>
       </div>
     );
   }
