@@ -10,7 +10,8 @@ var GuiStore = Reflux.createStore({
       deviceSelectedMaterial: false,
       allMaterials:           [],
       stopLightPopupOpen:     false,
-      ratingPopupOpen:        false
+      ratingPopupOpen:        false,
+      logInPopupOpen:         false
     };
 
     this.listenTo(apiActions.loadSuccess,           this.onApiDidLoad);
@@ -22,21 +23,35 @@ var GuiStore = Reflux.createStore({
     this.listenTo(guiActions.openRatingPopup,       this.onOpenRatingPopup);
     this.listenTo(guiActions.closeRatingPopup,      this.onCloseRatingPopup);
     this.listenTo(guiActions.selectDeviceMaterial,  this.onSelectDeviceMaterial);
+    this.listenTo(guiActions.logInClicked,          this.onLogInClicked);
+    this.listenTo(guiActions.logInCloseClicked,     this.onLogInCloseClicked);
+  },
+
+  onLogInCloseClicked: function () {
+    this.state.logInPopupOpen = false
+    this.trigger(this.state)
+  },
+
+  onLogInClicked: function () {
+    this.state.logInPopupOpen = true
+    this.trigger(this.state)
   },
 
   onSelectDeviceMaterial: function (material) {
+    this.state.ratingPopupOpen = false
+
     this.state.deviceSelectedMaterial = material
-    this.trigger(this.state);
+    this.trigger(this.state)
   },
 
   onOpenRatingPopup: function () {
-    this.state.ratingPopupOpen = true;
-    this.trigger(this.state);
+    this.state.ratingPopupOpen = true
+    this.trigger(this.state)
   },
 
   onCloseRatingPopup: function () {
-    this.state.ratingPopupOpen = false;
-    this.trigger(this.state);
+    this.state.ratingPopupOpen = false
+    this.trigger(this.state)
   },
 
   onStopLightClicked: function () {
@@ -50,6 +65,9 @@ var GuiStore = Reflux.createStore({
   },
   
   onCartMoved: function () {
+    this.state.deviceSelectedMaterial = false
+    this.state.ratingPopupOpen        = false
+
     var currentMaterial = this.state.allMaterials[this.state.cartOffset];
     if (currentMaterial) {
       this.state.deviceMaterials.push(currentMaterial);
@@ -59,6 +77,7 @@ var GuiStore = Reflux.createStore({
       clearInterval(this.skipIntervall);
     }
     this.state.deviceSelectedMaterial = false
+    ratingPopupOpen = false
   },
 
   onSkipCharts: function () {

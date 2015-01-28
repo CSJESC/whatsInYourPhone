@@ -18,5 +18,48 @@
   &:after
     right -2000px
     
-  .infos-inner
-    position relative
+  .inser-data-wrapper
+    margin-left  720px
+    padding-left 20px
+    height       420px
+    border-left  1px solid white
+    text-align   center
+    
+    .title
+      text-align left
+      margin     0 0 5px 0
+      
+    .text
+      text-align left
+      
+    .log-in
+      display    block
+      margin-top 40px
+      cursor     pointer
+      
+    .popup
+      position absolute
+      top      0
+      left     20px
+      width    700px
+      height   440px
+      border-top light-grey solid 30px
+      background-color normal-grey
+      padding          20px
+      &:after
+        content       ' '
+        position      absolute
+        top           195px
+        right         -30px
+        width         0
+        height        0
+        border-left   30px solid normal-grey
+        border-top    30px solid transparent 
+        border-bottom 30px solid transparent
+      
+      .close
+        position  absolute
+        top       10px
+        right     15px
+        font-size 20px
+        cursor    pointer

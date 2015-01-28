@@ -12,23 +12,27 @@ var Rating = React.createClass({
   },
 
   popup: function () {
-    return (
-      <div className = "popup">
-        <a 
-          className = "close"
-          onClick   = {this.closePopup}
-        >
-          x
-        </a>
-        <p>health: 20%</p>
-        <p>Recicability: 20%</p>
-        <p>Country Rating: 60% <br/>
-        -> working Conditions: 50% <br/>
-        -> human Rights: 30% <br/>
-        -> mineral Industry Rating: 20% <br/>
-        </p>
-      </div>
-    )
+    if (this.props.popupOpen) {
+      return (
+        <div className = "popup">
+          <a 
+            className = "close"
+            onClick   = {this.closePopup}
+          >
+            &#10005;
+          </a>
+          <p>health: 20%</p>
+          <p>Recicability: 20%</p>
+          <p>Country Rating: 60% <br/>
+          -> working Conditions: 50% <br/>
+          -> human Rights: 30% <br/>
+          -> mineral Industry Rating: 20% <br/>
+          </p>
+        </div>
+      )
+    } else {
+      return null
+    }
   },
 
   render: function () {
@@ -56,7 +60,7 @@ var Rating = React.createClass({
           <dt className = "rating-type">Country Rating</dt>
         </li>
 
-        {this.props.popupOpen? this.popup() : null}
+        {this.popup()}
       </ul>
     );
   }

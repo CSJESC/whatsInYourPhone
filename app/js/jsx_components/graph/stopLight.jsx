@@ -11,24 +11,28 @@ var StopLight = React.createClass({
   },
 
   popup: function () {
-    return (
-      <div className = "popup">
-        <a 
-          className = "close"
-          onClick   = {this.closePopup}
-        >
-          x
-        </a>
-        <h3 className = "color-legend-title">Points you need for a color</h3>
-        <p>
-          red:         {this.props.colors.red}        / 100 <br/>
-          orange:      {this.props.colors.orange}     / 100 <br/>
-          yellow:      {this.props.colors.yellow}     / 100 <br/>
-          light-green: {this.props.colors.lightGreen} / 100 <br/>
-          green:       {this.props.colors.green}      / 100 <br/>
-        </p>
-      </div>
-    )
+    if (this.props.popupIsOpen) {
+      return (
+        <div className = "popup">
+          <a 
+            className = "close"
+            onClick   = {this.closePopup}
+          >
+            &#10005;
+          </a>
+          <h3 className = "color-legend-title">Points you need for a color</h3>
+          <p>
+            red:         {this.props.colors.red}        / 100 <br/>
+            orange:      {this.props.colors.orange}     / 100 <br/>
+            yellow:      {this.props.colors.yellow}     / 100 <br/>
+            light-green: {this.props.colors.lightGreen} / 100 <br/>
+            green:       {this.props.colors.green}      / 100 <br/>
+          </p>
+        </div>
+      ) 
+    } else {
+      return null
+    }
   },
 
   render: function () {
@@ -49,7 +53,7 @@ var StopLight = React.createClass({
         onClick   = {guiActions.stopLightClicked}
       >
         {lights}
-        {this.props.popupIsOpen? this.popup() : null}
+        {this.popup()}
       </div>
     );
   }

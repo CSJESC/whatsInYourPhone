@@ -3,7 +3,8 @@
 var React      = require('react');
 var guiActions = require('../../actions/guiActions');
 
-var InfosInner  = require('./infosInner.jsx');
+var InfosInner     = require('./infosInner.jsx');
+var InsertDataLink = require('./insertDataLink.jsx');
 
 var Infos = React.createClass({
 
@@ -101,7 +102,7 @@ var Infos = React.createClass({
 
 
   // LAYOUT
-  
+
   innerInfos: function () {
     if (this.props.material && this.props.showInner) {
       return (
@@ -119,6 +120,7 @@ var Infos = React.createClass({
     return (
       <div className = "infos">
         {this.innerInfos()}
+        <InsertDataLink logInPopupOpen = {this.props.logInPopupOpen} />
       </div>
     )
   }

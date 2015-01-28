@@ -38,50 +38,74 @@ var Page = React.createClass({
     return carts;
   },
 
+  reload: function () {
+    location.reload()
+  },
+
+  nextLink: function (isLastCart) {
+    if (!isLastCart) {
+      return (
+        <a 
+          className = "next" 
+          onClick   = {guiActions.moveCarts}
+        > 
+          next
+        </a>
+      )
+    } else {
+      return null
+    }
+  },
+
+  skipLink: function (isLastCart) {
+    if (!isLastCart) {
+      return (
+        <a 
+          className = "skip"
+          onClick   = {guiActions.skipCarts}
+        > 
+          move all
+        </a>
+      )
+    } else {
+      return (
+        <a 
+          className = "skip"
+          onClick   = {this.reload}
+        > 
+          &#8634;
+        </a>
+      )
+    }
+  },
+
   render: function () {
     var allMaterials = this.props.fromStore.allMaterials
     ,   offset       = this.props.fromStore.cartOffset
 
     var isLastCart   = (offset >= allMaterials.length);
-
-    var nextLink = (
-      <a 
-        className = "next" 
-        onClick   = {guiActions.moveCarts}
-      > 
-        next
-      </a>
-    );
-    var skipLink = (
-      <a 
-        className = "skip"
-        onClick   = {guiActions.skipCarts}
-      > 
-        skip 
-      </a>
-    );
-
     var currentMaterial = allMaterials[offset];
 
     return (
       <div className = "carts">
-        {isLastCart? null : nextLink}
-        {isLastCart? null : skipLink}
+        {this.nextLink(isLastCart)}
+        {this.skipLink(isLastCart)}
         <ReactCSSTransitionGroup transitionName = "move-carts">
           {this.getNextCarts()}
         </ReactCSSTransitionGroup>
 
         <Infos 
-          material    = {currentMaterial} 
-          colors      = {this.COLORS}
-          ratingPopup = {this.props.fromStore.ratingPopup}
-          showInner   = {!this.props.fromStore.deviceSelectedMaterial}
+          material       = {currentMaterial} 
+          colors         = {this.COLORS}
+          ratingPopup    = {this.props.fromStore.ratingPopupOpen}
+          showInner      = {!this.props.fromStore.deviceSelectedMaterial}
+          logInPopupOpen = {this.props.fromStore.logInPopupOpen}
         />
         <StopLight 
           color       = {currentMaterial? currentMaterial.color : null} 
           colors      = {this.COLORS}
           unshure     = {currentMaterial? currentMaterial.unshureFlag : null}
-          popupIsOpen = {this.props.fromStore.stopLightPopup}
+          popupIsOpen = {this.props.fromStore.stopLightPopupOpen}
         />
       </div>
     );

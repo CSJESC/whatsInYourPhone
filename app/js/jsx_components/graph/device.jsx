@@ -38,7 +38,7 @@ var Page = React.createClass({
       return (
         <InfosInner
           material    = {material}
-          ratingPopup = {false}
+          ratingPopup = {this.props.ratingPopup}
         />
       )
     } else {
