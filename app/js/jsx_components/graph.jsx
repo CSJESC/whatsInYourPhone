@@ -2,8 +2,8 @@
 
 var React = require('react');
 
-var Device    = require('./device.jsx');
-var Carts     = require('./carts.jsx');
+var Device    = require('./graph/device.jsx');
+var Carts     = require('./graph/carts.jsx');
 
 var Page = React.createClass({
 

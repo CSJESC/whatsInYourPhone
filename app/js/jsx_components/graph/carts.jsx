@@ -24,6 +24,8 @@ var Page = React.createClass({
     var carts  = []
     ,   offset = this.props.fromStore.cartOffset
 
+    if (offset < 0) offset = 0 // always show 3 carts
+
     for (var i = 0; i < this.numberOfCarts; i++) {
       var key      = i + offset;
       var material = this.props.fromStore.allMaterials[key];
@@ -33,7 +35,6 @@ var Page = React.createClass({
         key      = {key}
         material = {material} />
       );
-      
     }
     return carts;
   },
@@ -43,13 +44,15 @@ var Page = React.createClass({
   },
 
   nextLink: function (isLastCart) {
+    var offset = this.props.fromStore.cartOffset
+
     if (!isLastCart) {
       return (
         <a 
           className = "next" 
           onClick   = {guiActions.moveCarts}
         > 
-          next
+          {offset < 0 ? 'start' : 'next'}
         </a>
       )
     } else {

@@ -5,13 +5,13 @@ var guiActions = require('../actions/guiActions');
 var GuiStore = Reflux.createStore({
   init: function() {
     this.state = {
-      cartOffset:             0,
+      cartOffset:             -1,
       deviceMaterials:        [],
       deviceSelectedMaterial: false,
       allMaterials:           [],
       stopLightPopupOpen:     false,
       ratingPopupOpen:        false,
-      logInPopupOpen:         false
+      logInPopupOpen:         false,
     };
 
     this.listenTo(apiActions.loadSuccess,           this.onApiDidLoad);
@@ -65,23 +65,29 @@ var GuiStore = Reflux.createStore({
   },
   
   onCartMoved: function () {
+    if (this.moveIsBlocked)
+      return false
+
+    this.moveIsBlocked = true
+
     this.state.deviceSelectedMaterial = false
     this.state.ratingPopupOpen        = false
 
     var currentMaterial = this.state.allMaterials[this.state.cartOffset];
+    this.state.cartOffset += 1;
     if (currentMaterial) {
       this.state.deviceMaterials.push(currentMaterial);
-      this.state.cartOffset += 1;
-      this.trigger(this.state);
-    } else {
-      clearInterval(this.skipIntervall);
     }
-    this.state.deviceSelectedMaterial = false
-    ratingPopupOpen = false
+    if (this.state.cartOffset >= this.state.allMaterials.length) {
+      clearInterval(this.skipIntervall)
+    }
+    this.trigger(this.state);
+    setTimeout(function(){this.moveIsBlocked = false}.bind(this),800)
   },
 
   onSkipCharts: function () {
-    this.skipIntervall = setInterval(this.onCartMoved.bind(this), 800);
+    clearInterval(this.skipIntervall)
+    this.skipIntervall = setInterval(this.onCartMoved.bind(this), 800)
   },
 
   onRatingCalculated: function (material, rating, color, countryRating, unshureFlag) {

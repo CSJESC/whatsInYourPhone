@@ -5,6 +5,7 @@ var guiActions = require('../../actions/guiActions');
 
 var InfosInner     = require('./infosInner.jsx');
 var InsertDataLink = require('./insertDataLink.jsx');
+var StartPage      = require('./startPage.jsx');
 
 var Infos = React.createClass({
 
@@ -50,6 +51,8 @@ var Infos = React.createClass({
   },
 
   calcRating: function (material) {
+    if (!material)
+      return false
     // the rating for the material itself
     var finalRating = 0
     var unshureFlag = false
@@ -112,7 +115,7 @@ var Infos = React.createClass({
         />
       )
     } else {
-      return null
+      return (<StartPage />)
     }
   },
 
