@@ -96,18 +96,21 @@ var Infos = React.createClass({
       return (
         <div 
           className = "infos">
-          <h2>{this.props.material.name}</h2>
-          <RatingInfo 
-            material  = {this.props.material} 
-            getColor  = {this.getColor}
-            colors    = {this.colors}
-            popupOpen = {this.props.ratingPopup}
-          />
-          <Description
-            description = {this.props.material.description}
-            links       = {this.props.material.links}
-          />
-          <UsedInList usedIn = {this.props.material.usedIn} />
+          <div 
+            className = "infos-inner">
+            <h2>{this.props.material.name}</h2>
+            <RatingInfo 
+              material  = {this.props.material} 
+              getColor  = {this.getColor}
+              colors    = {this.colors}
+              popupOpen = {this.props.ratingPopup}
+            />
+            <Description
+              description = {this.props.material.description}
+              links       = {this.props.material.links}
+            />
+            <UsedInList usedIn = {this.props.material.usedIn} />
+          </div>
         </div>
       );
     } else {

@@ -2,9 +2,8 @@
   position         relative
   background-color light-grey
   height           470px
-  padding          20px
+  padding          30px 20px 20px 20px
   clear            both
-  
   &:before
   &:after
     content          ' '
@@ -14,11 +13,28 @@
     width            2000px
     background-color light-grey
     z-index          -1
-    
   &:before
     left  -2000px
   &:after
     right -2000px
+    
+  .infos-inner
+    position         relative
+    background-color normal-grey
+    height           420px
+    width            700px
+    padding          10px 20px
+    &:before
+      content       ' '
+      position      absolute
+      top           -30px
+      left          134px
+      width         0
+      height        0
+      border-left   30px solid transparent
+      border-right  30px solid transparent 
+      border-bottom 30px solid normal-grey
+      
     
   .used-in
     margin   0
