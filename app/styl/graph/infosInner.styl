@@ -19,6 +19,9 @@
   width        300px
   float        left
   margin-right 20px
+  
+.right-col
+  overflow hidden
     
 .rating
   margin   0
@@ -98,20 +101,51 @@
     a:hover
       text-decoration underline
       
-.used-in
+.list
   margin   0
   padding  0
   overflow hidden
   
-  .used-in-title
+  .list-title
     font-size 14px
     margin    0 0 5px 0
     
-  .part-name
+  .item-name
     list-style       none
     float            left
     padding          4px 6px
     font-size        12px
     margin           0 5px 0 0
     background-color grey
+    &.active
+      background-color orange
+      
+.world-map
+  position relative
+  
+  .globe
+    margin 40px 0 0 20px
+  
+  .country-ratings
+    position absolute
+    top      100px
+    right    0
+    margin   0
+    padding  0
     
+  .rating-item
+    list-style       none
+    background-color grey
+    padding          4px 9px
+    margin           9px 0
+    
+  dt
+    display     inline-block
+    width 110px
+  dd
+    display     inline-block
+    margin      0
+    font-weight 600
+    
+  
+  

@@ -5,13 +5,17 @@ var guiActions = require('../actions/guiActions');
 var GuiStore = Reflux.createStore({
   init: function() {
     this.state = {
-      cartOffset:             -1,
-      deviceMaterials:        [],
+      cartOffset:      -1,
+      deviceMaterials: [],
+      allMaterials:    [],
+
       deviceSelectedMaterial: false,
-      allMaterials:           [],
-      stopLightPopupOpen:     false,
-      ratingPopupOpen:        false,
-      logInPopupOpen:         false,
+      selectedCountry:        null,
+
+      stopLightPopupOpen: false,
+      ratingPopupOpen:    false,
+      logInPopupOpen:     false
+
     };
 
     this.listenTo(apiActions.loadSuccess,           this.onApiDidLoad);
@@ -25,6 +29,12 @@ var GuiStore = Reflux.createStore({
     this.listenTo(guiActions.selectDeviceMaterial,  this.onSelectDeviceMaterial);
     this.listenTo(guiActions.logInClicked,          this.onLogInClicked);
     this.listenTo(guiActions.logInCloseClicked,     this.onLogInCloseClicked);
+    this.listenTo(guiActions.selectCountry,         this.onSelectCountry);
+  },
+
+  onSelectCountry: function (country, e) {
+    this.state.selectedCountry = country
+    this.trigger(this.state)
   },
 
   onLogInCloseClicked: function () {
@@ -38,9 +48,8 @@ var GuiStore = Reflux.createStore({
   },
 
   onSelectDeviceMaterial: function (material) {
-    this.state.ratingPopupOpen = false
-
     this.state.deviceSelectedMaterial = material
+    this.clearInfoWindow()
     this.trigger(this.state)
   },
 
@@ -70,11 +79,12 @@ var GuiStore = Reflux.createStore({
 
     this.moveIsBlocked = true
 
-    this.state.deviceSelectedMaterial = false
-    this.state.ratingPopupOpen        = false
-
     var currentMaterial = this.state.allMaterials[this.state.cartOffset];
     this.state.cartOffset += 1;
+
+    this.state.deviceSelectedMaterial = false
+    this.clearInfoWindow()
+
     if (currentMaterial) {
       this.state.deviceMaterials.push(currentMaterial);
     }
@@ -103,6 +113,14 @@ var GuiStore = Reflux.createStore({
     this.state.allMaterials = materials
     this.trigger(this.state)
   },
+
+  // helper
+  clearInfoWindow: function () {
+    var currentMaterial = this.state.deviceSelectedMaterial || this.state.allMaterials[this.state.cartOffset];
+
+    this.state.ratingPopupOpen = false
+    this.state.selectedCountry = currentMaterial? currentMaterial.minedIn[0] : null
+  }
 });
 
 module.exports = GuiStore;

@@ -100,9 +100,7 @@ var Page = React.createClass({
         <Infos 
           material       = {currentMaterial} 
           colors         = {this.COLORS}
-          ratingPopup    = {this.props.fromStore.ratingPopupOpen}
-          showInner      = {!this.props.fromStore.deviceSelectedMaterial}
-          logInPopupOpen = {this.props.fromStore.logInPopupOpen}
+          fromStore      = {this.props.fromStore}
         />
         <StopLight 
           color       = {currentMaterial? currentMaterial.color : null} 

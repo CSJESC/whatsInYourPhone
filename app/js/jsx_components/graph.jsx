@@ -14,6 +14,7 @@ var Page = React.createClass({
         <Device 
           materials        = {this.props.fromStore.deviceMaterials}
           selectedMaterial = {this.props.fromStore.deviceSelectedMaterial}
+          selectedCountry  = {this.props.fromStore.selectedCountry}
           ratingPopup      = {this.props.fromStore.ratingPopupOpen}
         />
         <Carts fromStore = {this.props.fromStore} />

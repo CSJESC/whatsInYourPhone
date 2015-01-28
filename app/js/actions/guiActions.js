@@ -10,7 +10,8 @@ var guiActions = Reflux.createActions([
   'closeRatingPopup',
   'selectDeviceMaterial',
   'logInClicked',
-  'logInCloseClicked'
+  'logInCloseClicked',
+  'selectCountry'
 ]);
 
 module.exports = guiActions;

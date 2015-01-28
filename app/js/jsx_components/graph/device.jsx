@@ -37,8 +37,9 @@ var Page = React.createClass({
     if (material) {
       return (
         <InfosInner
-          material    = {material}
-          ratingPopup = {this.props.ratingPopup}
+          material        = {material}
+          ratingPopup     = {this.props.ratingPopup}
+          selectedCountry = {this.props.selectedCountry}
         />
       )
     } else {

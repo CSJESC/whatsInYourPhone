@@ -107,11 +107,13 @@ var Infos = React.createClass({
   // LAYOUT
 
   innerInfos: function () {
-    if (this.props.material && this.props.showInner) {
+    var showInner = !this.props.fromStore.deviceSelectedMaterial
+    if (this.props.material && showInner) {
       return (
         <InfosInner
-          material    = {this.props.material}
-          ratingPopup = {this.props.ratingPopup}
+          material        = {this.props.material}
+          ratingPopup     = {this.props.fromStore.ratingPopupOpen}
+          selectedCountry = {this.props.fromStore.selectedCountry}
         />
       )
     } else {
@@ -123,7 +125,7 @@ var Infos = React.createClass({
     return (
       <div className = "infos">
         {this.innerInfos()}
-        <InsertDataLink logInPopupOpen = {this.props.logInPopupOpen} />
+        <InsertDataLink logInPopupOpen = {this.props.fromStore.logInPopupOpen} />
       </div>
     )
   }
