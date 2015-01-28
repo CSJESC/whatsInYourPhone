@@ -10,8 +10,8 @@
   border-radius 5px
   background    dark-grey
   cursor        pointer
-  z-index       10
-  
+  cursor        pointer
+  z-index       0
   &:after
     content          ' '
     position         absolute
@@ -21,7 +21,10 @@
     width            12px
     height           pole-length
     background-color dark-grey
-    
+  &.unshure
+    .light
+      background-image url(../img/stripes.png)
+      
   .light
     diameter = 35px
     

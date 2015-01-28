@@ -39,20 +39,19 @@ var Rating = React.createClass({
       >
         <li className = "rating-item">
           <dd className = "rating-number">
-            {this.props.material.healthRating}
+            {(this.props.material.healthRating !== undefined)? this.props.material.healthRating : '?'}
           </dd>
           <dt className = "rating-type">Health</dt>
         </li>
         <li className = "rating-item">
           <dd className = "rating-number">
-            {this.props.material.recyclingRating}
+            {(this.props.material.recyclingRating !== undefined)? this.props.material.recyclingRating : '?'}
           </dd>
           <dt className = "rating-type">Recicability</dt>
         </li>
         <li className = "rating-item">
-          
           <dd className = "rating-number">
-            {this.props.material.countryRating}
+            {(this.props.material.countryRating !== undefined)? this.props.material.countryRating : '?'}
           </dd>
           <dt className = "rating-type">Country Rating</dt>
         </li>

@@ -7,10 +7,16 @@ var Page = React.createClass({
 
   listMaterials: function () {
     var list = this.props.materials.map(function(material, i) {
+      var cx = React.addons.classSet;
+      var classes = cx({
+        'device-material': true,
+        'unshure':         material.unshureFlag
+      })
+      
       return (
         <li 
           key       = {i}
-          className = {'device-material ' + material.color}>
+          className = {classes + ' ' + material.color}>
           {material.name}
         </li>
       );

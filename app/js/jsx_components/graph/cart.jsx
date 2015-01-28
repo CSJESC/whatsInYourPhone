@@ -1,16 +1,26 @@
 "use strict";
 
-var React = require('react');
+var React = require('react/addons');
 
 var Page = React.createClass({
 
   render: function () {
-    var color = ''
-    if (this.props.material) 
-      color = this.props.material.color
+    var color, unshure
+    if (this.props.material) {
+      color   = this.props.material.color
+      unshure = this.props.material.unshureFlag
+    }
+
+    var cx = React.addons.classSet;
+    var classes = cx({
+      'cart':    true,
+      'unshure': unshure,
+      'unkown':  !this.props.material
+    })
+
     return (
       <div 
-        className = {'cart ' + color}>
+        className = {classes + ' ' + color}>
         <svg version="1.1" id="Vrstva_1" x="0px" y="0px"
            width="171px" height="145px" viewBox="0 0 170.5 144.729" enable-background="new 0 0 170.5 144.729">
         <path className="cart-plane" d="M1.58,40.068l16.667-5.333l6-4.667c0,0,4-1.334,6,1.333s4-1.333,4-1.333s-2-1.333,1.333-5.333s6,0,6,0

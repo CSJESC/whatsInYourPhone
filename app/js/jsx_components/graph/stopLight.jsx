@@ -37,6 +37,7 @@ var StopLight = React.createClass({
       var showColor = (color == this.props.color) ? color : ''
       lights.push(
         <span
+          key       = {color}
           className = {showColor + ' light'}
         />
       )
@@ -44,7 +45,7 @@ var StopLight = React.createClass({
 
     return (
       <div 
-        className = "stop-Light"
+        className = {"stop-Light " + (this.props.unshure? 'unshure' : '')}
         onClick   = {guiActions.stopLightClicked}
       >
         {lights}

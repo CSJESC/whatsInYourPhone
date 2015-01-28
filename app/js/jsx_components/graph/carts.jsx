@@ -74,6 +74,7 @@ var Page = React.createClass({
         <StopLight 
           color       = {currentMaterial? currentMaterial.color : null} 
           colors      = {this.COLORS}
+          unshure     = {currentMaterial? currentMaterial.unshureFlag : null}
           popupIsOpen = {this.props.stopLightPopup}
         />
       </div>

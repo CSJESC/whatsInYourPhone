@@ -51,34 +51,44 @@ var Infos = React.createClass({
   },
 
   calcRating: function (material) {
-    var matRatings = material;
-
     // the rating for the material itself
-    var finalRating = 0;
-    for (var criterion in matRatings) {
-      if (Object.keys(this.FACTORS.material).indexOf(criterion) !== -1) {
-        finalRating += this.FACTORS.material[criterion](matRatings[criterion]);
+    var finalRating = 0
+    var unshureFlag = false
+
+    for (var criterion in this.FACTORS.material) {
+      var formula = this.FACTORS.material[criterion]
+      finalRating += formula(material[criterion])
+      if (material[criterion] === undefined) {
+        unshureFlag = true
       }
     }
 
     // the rating for the countries the material is mined in
-    var countryRating = 0;
-    material.minedIn.forEach(function (country) {
-      var currentCountryRating = 0;
-      for (var criterion in country) {
-        if (Object.keys(this.FACTORS.country).indexOf(criterion) !== -1) {
-          currentCountryRating += this.FACTORS.country[criterion](country[criterion]);
-        }
-      }
-      // average contry rating normalized by its share on mining the material
-      countryRating += currentCountryRating * country.share;
-    }.bind(this));
+    var countryRating
+    if (material.minedIn.length > 0) {
+      countryRating = 0
+      var fallbackShare = 1 / material.minedIn.length
 
-    finalRating += countryRating * this.FACTORS.country_factor;
+      material.minedIn.forEach(function (country) {
+        var currentCountryRating = 0;
+        for (var criterion in country) {
+          if (Object.keys(this.FACTORS.country).indexOf(criterion) !== -1) {
+            currentCountryRating += this.FACTORS.country[criterion](country[criterion]);
+          }
+        }
+        // average contry rating normalized by its share on mining the material
+        countryRating += currentCountryRating * (country.share || fallbackShare);
+      }.bind(this));
+
+      finalRating += countryRating * this.FACTORS.country_factor;
+      countryRating = parseInt(countryRating)
+    } else {
+      unshureFlag = true
+    }
     finalRating = parseInt(finalRating + 0.5); // round to whole number
 
     var color = this.getColor(finalRating);
-    guiActions.ratingCalculated(material, finalRating, color, countryRating);
+    guiActions.ratingCalculated(material, finalRating, color, countryRating, unshureFlag);
   },
 
   getColor: function (rating) {

@@ -57,11 +57,12 @@ var GuiStore = Reflux.createStore({
     this.skipIntervall = setInterval(this.onCartMoved.bind(this), 800);
   },
 
-  onRatingCalculated: function (material, rating, color, countryRating) {
+  onRatingCalculated: function (material, rating, color, countryRating, unshureFlag) {
     // material should be in this.state.allMaterials
     material.calculatedRating = rating
     material.color            = color
-    material.countryRating    = parseInt(countryRating)
+    material.countryRating    = countryRating
+    material.unshureFlag      = unshureFlag
     this.trigger(this.state);
   },
 
