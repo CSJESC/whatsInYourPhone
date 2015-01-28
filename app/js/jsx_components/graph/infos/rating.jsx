@@ -11,8 +11,8 @@ var Rating = React.createClass({
     guiActions.closeRatingPopup()
   },
 
-  render: function () {
-    var popup = (
+  popup: function () {
+    return (
       <div className = "popup">
         <a 
           className = "close"
@@ -29,38 +29,35 @@ var Rating = React.createClass({
         </p>
       </div>
     )
+  },
 
+  render: function () {
     return (
       <ul 
         className = "rating"
         onClick   = {guiActions.openRatingPopup}
       >
         <li className = "rating-item">
-          <dt>Health</dt>
-          <dd
-            className = {this.props.getColor(this.props.material.healthRating * 25)}
-          >
-            {this.props.material.healthRating} / 4
+          <dd className = "rating-number">
+            {this.props.material.healthRating}
           </dd>
+          <dt className = "rating-type">Health</dt>
         </li>
         <li className = "rating-item">
-          <dt>Recicability</dt>
-          <dd
-            className = {this.props.getColor(this.props.material.recyclingRating * 25)}
-          >
-            {this.props.material.recyclingRating} / 4
+          <dd className = "rating-number">
+            {this.props.material.recyclingRating}
           </dd>
+          <dt className = "rating-type">Recicability</dt>
         </li>
         <li className = "rating-item">
-          <dt>Country Rating</dt>
-          <dd
-            className = {this.props.getColor(this.props.material.countryRating)}
-          >
-            {this.props.material.countryRating} / 100
+          
+          <dd className = "rating-number">
+            {this.props.material.countryRating}
           </dd>
+          <dt className = "rating-type">Country Rating</dt>
         </li>
 
-        {this.props.popupOpen? popup : null}
+        {this.props.popupOpen? this.popup() : null}
       </ul>
     );
   }

@@ -12,8 +12,8 @@ var Description = React.createClass({
         <li 
           key       = {i}
           className = "link-list-item">
-          <a href = {link}>
-            Quelle {i}
+          <a href = {link} target = "_blank">
+            {(i === 0) ? 'read more' : ', and more'}
           </a>
         </li>
       )
