@@ -21,10 +21,12 @@ var Page = React.createClass({
   },
 
   getNextCarts: function () {
-    var carts = [];
+    var carts  = []
+    ,   offset = this.props.fromStore.cartOffset
+
     for (var i = 0; i < this.numberOfCarts; i++) {
-      var key      = i + this.props.offset;
-      var material = this.props.allMaterials[key];
+      var key      = i + offset;
+      var material = this.props.fromStore.allMaterials[key];
       // a cart can have "material = null" it knows what to do
       carts.push(
         <Cart 
@@ -37,7 +39,10 @@ var Page = React.createClass({
   },
 
   render: function () {
-    var isLastCart = (this.props.offset >= this.props.allMaterials.length);
+    var allMaterials = this.props.fromStore.allMaterials
+    ,   offset       = this.props.fromStore.cartOffset
+
+    var isLastCart   = (offset >= allMaterials.length);
 
     var nextLink = (
       <a 
@@ -56,7 +61,7 @@ var Page = React.createClass({
       </a>
     );
 
-    var currentMaterial = this.props.allMaterials[this.props.offset];
+    var currentMaterial = allMaterials[offset];
 
     return (
       <div className = "carts">
@@ -69,13 +74,14 @@ var Page = React.createClass({
         <Infos 
           material    = {currentMaterial} 
           colors      = {this.COLORS}
-          ratingPopup = {this.props.ratingPopup}
+          ratingPopup = {this.props.fromStore.ratingPopup}
+          showInner   = {!this.props.fromStore.deviceSelectedMaterial}
         />
         <StopLight 
           color       = {currentMaterial? currentMaterial.color : null} 
           colors      = {this.COLORS}
           unshure     = {currentMaterial? currentMaterial.unshureFlag : null}
-          popupIsOpen = {this.props.stopLightPopup}
+          popupIsOpen = {this.props.fromStore.stopLightPopup}
         />
       </div>
     );

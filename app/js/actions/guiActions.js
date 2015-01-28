@@ -7,7 +7,8 @@ var guiActions = Reflux.createActions([
   'stopLightClicked',
   'stopLightCloseClicked',
   'openRatingPopup',
-  'closeRatingPopup'
+  'closeRatingPopup',
+  'selectDeviceMaterial'
 ]);
 
 module.exports = guiActions;

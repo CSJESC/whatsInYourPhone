@@ -12,13 +12,10 @@ var Page = React.createClass({
       <div 
         className = "graph">
         <Device 
-          materials = {this.props.fromStore.deviceMaterials}/>
-        <Carts 
-          allMaterials   = {this.props.fromStore.allMaterials}
-          offset         = {this.props.fromStore.cartOffset}
-          stopLightPopup = {this.props.fromStore.stopLightPopupOpen}
-          ratingPopup    = {this.props.fromStore.ratingPopupOpen}
+          materials        = {this.props.fromStore.deviceMaterials}
+          selectedMaterial = {this.props.fromStore.deviceSelectedMaterial}
         />
+        <Carts fromStore = {this.props.fromStore} />
       </div>
     );
   }

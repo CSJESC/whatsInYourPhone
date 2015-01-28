@@ -5,11 +5,12 @@ var guiActions = require('../actions/guiActions');
 var GuiStore = Reflux.createStore({
   init: function() {
     this.state = {
-      cartOffset:         0,
-      deviceMaterials:    [],
-      allMaterials:       [],
-      stopLightPopupOpen: false,
-      ratingPopupOpen:    false
+      cartOffset:             0,
+      deviceMaterials:        [],
+      deviceSelectedMaterial: false,
+      allMaterials:           [],
+      stopLightPopupOpen:     false,
+      ratingPopupOpen:        false
     };
 
     this.listenTo(apiActions.loadSuccess,           this.onApiDidLoad);
@@ -20,6 +21,12 @@ var GuiStore = Reflux.createStore({
     this.listenTo(guiActions.stopLightCloseClicked, this.onStopLightClose);
     this.listenTo(guiActions.openRatingPopup,       this.onOpenRatingPopup);
     this.listenTo(guiActions.closeRatingPopup,      this.onCloseRatingPopup);
+    this.listenTo(guiActions.selectDeviceMaterial,  this.onSelectDeviceMaterial);
+  },
+
+  onSelectDeviceMaterial: function (material) {
+    this.state.deviceSelectedMaterial = material
+    this.trigger(this.state);
   },
 
   onOpenRatingPopup: function () {
@@ -51,6 +58,7 @@ var GuiStore = Reflux.createStore({
     } else {
       clearInterval(this.skipIntervall);
     }
+    this.state.deviceSelectedMaterial = false
   },
 
   onSkipCharts: function () {

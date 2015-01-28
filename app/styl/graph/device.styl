@@ -38,16 +38,22 @@
     list-style none
     text-align center
     padding    4px
-    color      black
+    color      dark-grey
     font-size  0
     height     5px
     border-top 1px solid grey
     transition 0.1s
-    cursor     pointer !important
-    &:hover
-      height    30px
-      font-size 16px
+    cursor     pointer
+    &:hover,
+    &.active
+      height      30px
+      font-size   18px
+      line-height 22px
       
+    &.active
+      font-size   20px
+      font-weight 600
+          
     &.red
       background-color red
     &.orange
@@ -61,6 +67,18 @@
       
     &.unshure
       background-image url(../img/stripes.png)
+      
+
+  .infos-inner
+    position absolute
+    top      -7px
+    left     266px
+    &:before
+      top           20px
+      left          -56px
+      border-top   30px solid transparent
+      border-right  30px solid normal-grey 
+      border-bottom 30px solid transparent
     
 // animate materials
 .slide-up-enter 
