@@ -23,7 +23,6 @@ var WorldMap = React.createClass({
     this.canvas.strokeStyle = "#000", this.canvas.lineWidth = 2, this.canvas.beginPath(), this.path(this.globe), this.canvas.stroke();
   },
   rotate: function() {
-    console.log(this.props.country);
 
     var country = names.filter(function(c) {
       return this.props.country === c.name;
