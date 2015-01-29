@@ -37,11 +37,10 @@
     "proxy-middleware": "^0.9.0"
   },
   "dependencies": {
+    "d3": "^3.5.3",
     "react": "~0.12.0",
     "reflux": "^0.1.15",
     "reqwest": "^1.1.5",
-    "jquery": "^2.1.1",
-    "sifter": "^0.3.4",
-    "microplugin": "0.0.3"
+    "topojson": "^1.6.18"
   }
 }

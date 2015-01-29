@@ -13,29 +13,29 @@ var Infos = React.createClass({
 
   render: function () {
     return (
-      <div 
+      <div
         className = "infos-inner">
         <div className = "left-col">
-          <RatingInfo 
-            material  = {this.props.material} 
+          <RatingInfo
+            material  = {this.props.material}
             popupOpen = {this.props.ratingPopup}
           />
           <Description
             description = {this.props.material.description}
             links       = {this.props.material.links}
           />
-          <List 
+          <List
             title = "Used In:"
             items = {this.props.material.usedIn} />
         </div>
         <div className = "right-col">
           <List
             title      = "Mined In:"
-            items      = {this.props.material.minedIn} 
+            items      = {this.props.material.minedIn}
             itemAction = {guiActions.selectCountry}
             selected   = {this.props.selectedCountry}
             />
-          <WorldMap country = {this.props.selectedCountry} />
+          <WorldMap country = {this.props.selectedCountry} width ="400" height = "400"/>
         </div>
       </div>
     )
