@@ -55,20 +55,20 @@ gulp.task('server', function() {
             var proxy = require('proxy-middleware'),
                 memorize = require('connect-memorize'),
                 url = require('url');
-            
+
             var baseURL = config.backendURL,
                 middlewares = [];
 
             config.routes.forEach(function(route) {
                 middlewares.push(memorize({
                     match: '/' + route, // handle only urls starting with $expression
-                    memorize: true, // store stuff
-                    recall: true, // serve previously stored
+                    memorize: false, // store stuff
+                    recall: false, // serve previously stored
                     storageDir: config.cacheDir
                 }));
                 middlewares.push(connect().use('/' + route, proxy(url.parse(baseURL + route))));
             });
-            
+
             return middlewares;
         }
     }
@@ -88,7 +88,7 @@ gulp.task('stylus', function () {
     gulp.src(paths.mainStyl)
     	.pipe($.plumber())
         .pipe($.stylus({
-            use: autoprefixer({browsers: ['Firefox > 5%', 'Explorer 9', 'Chrome > 5%', 'Safari > 5%']}), 
+            use: autoprefixer({browsers: ['Firefox > 5%', 'Explorer 9', 'Chrome > 5%', 'Safari > 5%']}),
             compress: true,
             'include css': true
         }))
