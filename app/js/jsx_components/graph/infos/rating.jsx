@@ -51,7 +51,7 @@ var Rating = React.createClass({
           <dd className = "rating-number">
             {(this.props.material.recyclingRating !== undefined)? this.props.material.recyclingRating : '?'}
           </dd>
-          <dt className = "rating-type">Recicability</dt>
+          <dt className = "rating-type">Recyclability</dt>
         </li>
         <li className = "rating-item">
           <dd className = "rating-number">
