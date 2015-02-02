@@ -38,7 +38,7 @@ var InsertDataLink = React.createClass({
         <p className = "text">
           The data we have is not complete.
           You fill in data about any device
-          you have informations about
+          you have information about
         </p>
         <a 
           className = "log-in"
