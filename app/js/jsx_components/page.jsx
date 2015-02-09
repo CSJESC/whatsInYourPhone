@@ -27,17 +27,18 @@ var Page = React.createClass({
   },
 
   render: function () {
-    if (this.state) {
-      return (
-        <div 
-          className = "view">
-          <Graph fromStore = {this.state} />
-          <Navigation />
-        </div>
-      );
-    } else {
-      return null;
+    if (!this.state) {
+      return false;
     }
+
+    return (
+      <div
+        className = "view">
+        <Graph fromStore = {this.state} />
+        <Navigation />
+      </div>
+    );
+
   }
 });
 

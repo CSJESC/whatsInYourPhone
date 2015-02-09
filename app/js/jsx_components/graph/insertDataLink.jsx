@@ -19,6 +19,10 @@ var InsertDataLink = React.createClass({
         <img className = "log-in-logo" src = "./img/Twitter_logo_white.png" alt="twitter" />
           log in with twitter
         </a>
+        <a className = "log-in-link" href = "http://materia.localhorst.io/auth/github" target = "_blank">
+        <img className = "log-in-logo" src = "http://placehold.it/400x400" alt="github" />
+          log in with github
+        </a>
         </div>
       )
     } else {
