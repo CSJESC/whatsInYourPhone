@@ -23,6 +23,7 @@ var Infos = React.createClass({
           <Description
             description = {this.props.material.description}
             links       = {this.props.material.links}
+            youtube     = {this.props.material.youtube}
           />
           <List
             title = "Used In:"

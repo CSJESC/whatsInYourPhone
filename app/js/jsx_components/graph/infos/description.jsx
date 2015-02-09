@@ -21,6 +21,11 @@ var Description = React.createClass({
     return (
       <ul className = "link-list">
         {linkList}
+        <li className = "link-list-item youtube">
+          <a href = {this.props.youtube} target = "_blank">
+            Periodic Table of Videos
+          </a>
+        </li>
       </ul>
     )
   },
