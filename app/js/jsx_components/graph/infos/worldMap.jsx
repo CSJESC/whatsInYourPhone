@@ -12,15 +12,15 @@ var WorldMap = React.createClass({
           <ul className = "country-ratings">
             <li className = "rating-item">
               <dt>Human Rights: </dt>
-              <dd>{this.props.country.humanRightsRating}</dd>
+              <dd>{this.props.country.humanRightsRating? this.props.country.humanRightsRating : '?'} / 100</dd>
             </li>
             <li className = "rating-item">
               <dt>Working Rights: </dt>
-              <dd>{this.props.country.workingConditionsRating}</dd>
+              <dd>{this.props.country.workingConditionsRating? this.props.country.workingConditionsRating - 1 : '?'} / 4</dd>
             </li>
             <li className = "rating-item">
               <dt>Mining Industry:</dt>
-              <dd>{this.props.country.mineralIndustryRating}</dd>
+              <dd>{this.props.country.mineralIndustryRating? this.props.country.mineralIndustryRating : '?'} / 70</dd>
             </li>
           </ul>
         </div>
