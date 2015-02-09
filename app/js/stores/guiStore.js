@@ -48,6 +48,8 @@ var GuiStore = Reflux.createStore({
   },
 
   onSelectDeviceMaterial: function (material) {
+    this.state.logInPopupOpen = false
+    
     this.state.deviceSelectedMaterial = material
     this.clearInfoWindow()
     this.trigger(this.state)
