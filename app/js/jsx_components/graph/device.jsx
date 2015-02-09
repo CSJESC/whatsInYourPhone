@@ -34,7 +34,7 @@ var Page = React.createClass({
   },
 
   materialInformationPopup: function (material) {
-    if (material) {
+    if (material && this.props.showInner) {
       return (
         <InfosInner
           material        = {material}

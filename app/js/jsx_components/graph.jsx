@@ -16,6 +16,7 @@ var Page = React.createClass({
           selectedMaterial = {this.props.fromStore.deviceSelectedMaterial}
           selectedCountry  = {this.props.fromStore.selectedCountry}
           ratingPopup      = {this.props.fromStore.ratingPopupOpen}
+          showInner        = {!this.props.fromStore.logInPopupOpen}
         />
         <Carts fromStore = {this.props.fromStore} />
       </div>
