@@ -49,15 +49,50 @@
   
   .popup
     position         absolute
-    top              0
-    left             15px
+    top              -5px
+    left             20px
     background-color light-grey
-    width            200px
-    font-size        11px
+    width            80px
+    height           270px
     padding          10px
+    z-index          200
+    box-shadow       0 0 7px 0px black
+    cursor           default
     
     .close
       position absolute
       top      5px
-      right    5px
-      background-color red
+      right    10px
+      cursor   pointer
+      
+    .title
+      font-size 14px
+      margin    20px 0 0
+      
+    .stop-light-chart
+      margin  10px 0
+      padding 0
+      height  200px
+      
+      .color
+        list-style  none
+        text-align  center
+        padding-top 10px
+        color       black
+        
+        &.red
+          background-color red
+          height           25%
+        &.orange
+          background-color orange
+          height           25%
+        &.yellow
+          background-color yellow
+          height           20%
+        &.lightGreen
+          background-color light-green
+          height           20%
+        &.green
+          background-color green
+          height           10%
+          padding-top      0

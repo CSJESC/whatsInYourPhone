@@ -20,14 +20,14 @@ var StopLight = React.createClass({
           >
             &#10005;
           </a>
-          <h3 className = "color-legend-title">Points you need for a color</h3>
-          <p>
-            red:         {this.props.colors.red}        / 100 <br/>
-            orange:      {this.props.colors.orange}     / 100 <br/>
-            yellow:      {this.props.colors.yellow}     / 100 <br/>
-            light-green: {this.props.colors.lightGreen} / 100 <br/>
-            green:       {this.props.colors.green}      / 100 <br/>
-          </p>
+          <h3 className = "title">Weighting</h3>
+          <ul className = "stop-light-chart">
+            <li className = "color green">      > {this.props.colors.green}%     </li>
+            <li className = "color lightGreen"> > {this.props.colors.lightGreen}%</li>
+            <li className = "color yellow">     > {this.props.colors.yellow}%   </li>
+            <li className = "color orange">     > {this.props.colors.orange}%    </li>
+            <li className = "color red">        > {this.props.colors.red}%       </li>
+          </ul>
         </div>
       ) 
     } else {
