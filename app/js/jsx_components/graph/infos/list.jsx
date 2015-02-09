@@ -14,6 +14,7 @@ var UsedIn = React.createClass({
       var cx = React.addons.classSet;
       var classes = cx({
         'item-name': true,
+        'clickable': this.props.itemAction,
         'active':    (this.props.selected == part)
       })
 
