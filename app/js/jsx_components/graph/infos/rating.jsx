@@ -21,13 +21,20 @@ var Rating = React.createClass({
           >
             &#10005;
           </a>
-          <p>health: 20%</p>
-          <p>Recicability: 20%</p>
-          <p>Country Rating: 60% <br/>
-          -> working Conditions: 50% <br/>
-          -> human Rights: 30% <br/>
-          -> mineral Industry Rating: 20% <br/>
-          </p>
+          <h3 className = "title">Weighting</h3>
+
+          <ul className = "weighting-chart">
+            <li className ="health block">Health: 20%</li>
+            <li className ="recicling block">Recicability: 20%</li>
+            <li className ="country block">
+              Country Rating: 60%
+              <ul className = "country-chart">
+                <li className ="working block">working Conditions: 50%</li>
+                <li className ="human block">human Rights: 30%</li>
+                <li className ="mineral block">mineral Industry Rating: 20%</li>
+              </ul>
+            </li>
+          </ul>
         </div>
       )
     } else {
@@ -36,6 +43,8 @@ var Rating = React.createClass({
   },
 
   render: function () {
+    var positiveHealthRating = (this.props.material.healthRating - 4) * -1
+
     return (
       <ul 
         className = "rating"
@@ -43,19 +52,19 @@ var Rating = React.createClass({
       >
         <li className = "rating-item">
           <dd className = "rating-number">
-            {(this.props.material.healthRating !== undefined)? this.props.material.healthRating : '?'}
+            {(this.props.material.healthRating !== undefined)? positiveHealthRating + ' / 4' : '?'}
           </dd>
           <dt className = "rating-type">Health</dt>
         </li>
         <li className = "rating-item">
           <dd className = "rating-number">
-            {(this.props.material.recyclingRating !== undefined)? this.props.material.recyclingRating : '?'}
+            {(this.props.material.recyclingRating !== undefined)? this.props.material.recyclingRating + ' / 4' : '?'}
           </dd>
           <dt className = "rating-type">Recyclability</dt>
         </li>
         <li className = "rating-item">
           <dd className = "rating-number">
-            {(this.props.material.countryRating !== undefined)? this.props.material.countryRating : '?'}
+            {(this.props.material.countryRating !== undefined)? this.props.material.countryRating + ' / 100' : '?'}
           </dd>
           <dt className = "rating-type">Country Rating</dt>
         </li>

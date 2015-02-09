@@ -27,7 +27,7 @@
   margin   0
   padding  0
   position relative
-  padding  0 10px 10px
+  padding  0 10px 10px 0
   border-bottom 1px solid white
 
   .rating-item
@@ -42,7 +42,7 @@
     .rating-number
       background-color grey
       margin           0
-      width            diameter
+      width            70px
       height           diameter
       border-radius    (diameter / 2)
       line-height      diameter
@@ -59,19 +59,62 @@
 
   .popup
     position         absolute
-    top              -100px
-    left             -50px
-    width            250px;
+    top              -75px
+    left             -100px
+    width            580px;
     background-color light-grey
     padding          10px
-    z-index          20
+    z-index          110
+    box-shadow       0 0 7px 0px black
 
     .close
       position absolute
       top      5px
-      right    5px
-      background-color red
-      cursor           pointer
+      right    10px
+      cursor   pointer
+      
+    .title
+      font-size 18px
+      margin    0
+      
+    .weighting-chart
+      margin  10px 0 0 0
+      padding 0
+    
+    .block
+      list-style       none
+      float            left
+      outline          1px solid white
+      background-color grey
+      height           80px
+      line-height      80px
+      font-family      "Open Sans", "sans-serif"
+      font-size        12px
+      text-align       center
+      &.health
+        width 20%
+      &.recicling
+        width 20%
+      &.country
+        width 60%
+        line-height 30px
+        
+      .country-chart
+        width   100%
+        padding 0
+        margin  0
+        .block 
+          height      50px
+          line-height 50px
+          font-size   10px
+      &.working
+        width 50%
+      &.human
+        width 30%
+      &.mineral
+        width 20%
+        line-height 12px !important
+        padding-top 7px
 
 .description
   height 220px
