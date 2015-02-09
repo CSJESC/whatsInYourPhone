@@ -9,14 +9,15 @@ var InsertDataLink = React.createClass({
     if (this.props.logInPopupOpen) {
       return (
         <div className = "popup">
-         <h3 className = "title">Please log In to insert Data</h3>
+         <h3 className = "title">Most of the data is still Missing! Help us fill it in</h3>
          <a 
           className = "close"
           onClick   = {this.closePopup}>
           &#10005;
         </a>
-        <a href = "http://materia.localhorst.io/auth/twitter" target = "_blank">
-          twitter hardcoded
+        <a className = "log-in-link" href = "http://materia.localhorst.io/auth/twitter" target = "_blank">
+        <img className = "log-in-logo" src = "./img/Twitter_logo_white.png" alt="twitter" />
+          log in with twitter
         </a>
         </div>
       )

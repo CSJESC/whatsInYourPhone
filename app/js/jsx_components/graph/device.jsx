@@ -51,6 +51,7 @@ var Page = React.createClass({
     return (
       <div 
         className = "device">
+        <p className = "questionnaire">?</p>
         <ul className = "device-materials">
           <ReactCSSTransitionGroup transitionName = "slide-up">
             {this.listMaterials()}

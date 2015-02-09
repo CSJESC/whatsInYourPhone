@@ -90,6 +90,7 @@ var GuiStore = Reflux.createStore({
     }
     if (this.state.cartOffset >= this.state.allMaterials.length) {
       clearInterval(this.skipIntervall)
+      this.state.logInPopupOpen = true
     }
     this.trigger(this.state);
     setTimeout(function(){this.moveIsBlocked = false}.bind(this),800)

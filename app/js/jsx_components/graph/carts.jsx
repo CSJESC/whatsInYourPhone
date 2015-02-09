@@ -86,16 +86,18 @@ var Page = React.createClass({
     var allMaterials = this.props.fromStore.allMaterials
     ,   offset       = this.props.fromStore.cartOffset
 
-    var isLastCart   = (offset >= allMaterials.length);
+    var isLastCart      = (offset >= allMaterials.length);
     var currentMaterial = allMaterials[offset];
 
     return (
       <div className = "carts">
         {this.nextLink(isLastCart)}
         {this.skipLink(isLastCart)}
-        <ReactCSSTransitionGroup transitionName = "move-carts">
-          {this.getNextCarts()}
-        </ReactCSSTransitionGroup>
+        <span className = "carts-list">
+          <ReactCSSTransitionGroup transitionName = "move-carts">
+            {this.getNextCarts()}
+          </ReactCSSTransitionGroup>
+        </span>
 
         <Infos 
           material       = {currentMaterial} 
