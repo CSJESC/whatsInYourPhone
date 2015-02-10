@@ -5,7 +5,7 @@ var url = require('url');
 var config = {
   apiPrefix: '/api/v1',
   endpoints: {
-    materials: '/materials'
+    materials: '/materials?sort=name'
   }
 };
 
