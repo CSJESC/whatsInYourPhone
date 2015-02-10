@@ -5,6 +5,9 @@ var d3 = require('d3');
 var topojson = require('topojson');
 
 var world = require('json!../../../api/world-110m.json');
+var borders = topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; });
+var land = topojson.feature(world, world.objects.countries);
+var countries = topojson.feature(world, world.objects.countries).features;
 
 var WorldMap = React.createClass({
   getInitialState: function() {
@@ -16,10 +19,6 @@ var WorldMap = React.createClass({
     };
   },
   componentDidMount: function() {
-    var borders = topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; });
-    var land = topojson.feature(world, world.objects.countries);
-    var countries = topojson.feature(world, world.objects.countries).features;
-
     this.setState({borders: borders, land: land, countries: countries})
     this.renderMap({canvas: this.getMap()});
   },

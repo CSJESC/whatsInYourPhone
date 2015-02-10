@@ -14,6 +14,20 @@
     border-left   30px solid transparent
     border-right  30px solid transparent
     border-bottom 30px solid normal-grey
+    
+.title
+  text-align left
+  margin     0 0 5px 0
+  &.red
+    color red
+  &.orange
+    color orange
+  &.yellow
+    color yellow
+  &.lightGreen
+    color light-green
+  &.green
+    color green
 
 .left-col
   width        300px
@@ -30,6 +44,11 @@
   padding  0 10px 10px 0
   border-bottom 1px solid white
 
+  &:hover
+    .rating-item .rating-number
+      transition color 0.5s
+      color orange
+        
   .rating-item
     diameter = 30px
 
@@ -52,11 +71,6 @@
       float            left
       margin-right     10px
       font-weight      700
-      
-      &:hover
-        color   orange
-        transition       color 0.5s
-
 
     .rating-type
       line-height diameter
@@ -71,6 +85,7 @@
     padding          10px
     z-index          110
     box-shadow       0 0 7px 0px black
+    color            white
 
     .close
       position absolute
@@ -122,20 +137,22 @@
         padding-top 7px
 
 .description
-  height 220px
+  height 185px
 
   .text
     font-family 'Open Sans', sans-serif
     font-weight 300
     font-size   13px
-    max-height  200px
+    max-height  165px
     overflow    auto
     margin      10px 0 0 0
+    text-align  justify
 
   .link-list
     margin  0
     padding 0
     text-align right
+    margin-top -4px
 
   .link-list-item
     list-style   none
@@ -152,7 +169,10 @@
     
     &.youtube
       color       red
-      margin-left 5px
+    .icono-youtube
+    .icono-chain
+      color     inherit
+      transform scale(0.6)
 
 .list
   margin   0
@@ -176,6 +196,7 @@
     &.clickable:hover
     &.active
       background-color orange
+      transition       background-color 0.5s
 
 .world-map
   position relative

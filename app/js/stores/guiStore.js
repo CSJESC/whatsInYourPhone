@@ -14,8 +14,9 @@ var GuiStore = Reflux.createStore({
 
       stopLightPopupOpen: false,
       ratingPopupOpen:    false,
-      logInPopupOpen:     false
+      logInPopupOpen:     false,
 
+      isAutoSkipping: false
     };
 
     this.listenTo(apiActions.loadSuccess,           this.onApiDidLoad);
@@ -100,7 +101,10 @@ var GuiStore = Reflux.createStore({
 
   onSkipCharts: function () {
     clearInterval(this.skipIntervall)
-    this.skipIntervall = setInterval(this.onCartMoved.bind(this), 800)
+    if (!this.state.isAutoSkipping)
+      this.skipIntervall = setInterval(this.onCartMoved.bind(this), 800)
+    this.state.isAutoSkipping = !this.state.isAutoSkipping
+    this.trigger(this.state);
   },
 
   onRatingCalculated: function (material, rating, color, countryRating, unshureFlag) {

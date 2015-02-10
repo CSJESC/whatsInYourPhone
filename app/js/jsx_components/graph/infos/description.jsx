@@ -13,7 +13,8 @@ var Description = React.createClass({
           key       = {i}
           className = "link-list-item">
           <a href = {link} target = "_blank">
-            {(i === 0) ? 'read more' : ', and more'}
+            <span className = "icono-chain" />
+            more
           </a>
         </li>
       )
@@ -23,6 +24,7 @@ var Description = React.createClass({
         {linkList}
         <li className = "link-list-item youtube">
           <a href = {this.props.youtube} target = "_blank">
+            <span className = "icono-youtube" />
             Periodic Table of Videos
           </a>
         </li>

@@ -38,7 +38,7 @@ var StopLight = React.createClass({
   render: function () {
     var lights = []
     for (var color in this.props.colors) {
-      var showColor = (color == this.props.color) ? color : ''
+      var showColor = (color == this.props.color) ? 'on ' + color : ''
       lights.push(
         <span
           key       = {color}

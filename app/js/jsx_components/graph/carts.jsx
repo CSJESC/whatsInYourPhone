@@ -52,7 +52,9 @@ var Page = React.createClass({
           className = "next" 
           onClick   = {guiActions.moveCarts}
         > 
+          <span className = 'icono-caretLeft'/>
           {offset < 0 ? 'start' : 'next'}
+          
         </a>
       )
     } else {
@@ -60,14 +62,15 @@ var Page = React.createClass({
     }
   },
 
-  skipLink: function (isLastCart) {
+  skipLink: function (isLastCart, isRunning) {
     if (!isLastCart) {
       return (
         <a 
           className = "skip"
           onClick   = {guiActions.skipCarts}
         > 
-          move all
+          <span className = {isRunning? 'icono-pause' : 'icono-rewind'}/>
+          {isRunning? 'stop' : 'Mine all'}
         </a>
       )
     } else {
@@ -83,8 +86,9 @@ var Page = React.createClass({
   },
 
   render: function () {
-    var allMaterials = this.props.fromStore.allMaterials
-    ,   offset       = this.props.fromStore.cartOffset
+    var allMaterials   = this.props.fromStore.allMaterials
+    ,   offset         = this.props.fromStore.cartOffset
+    ,   isAutoSkipping = this.props.fromStore.isAutoSkipping
 
     var isLastCart      = (offset >= allMaterials.length);
     var currentMaterial = allMaterials[offset];
@@ -92,7 +96,7 @@ var Page = React.createClass({
     return (
       <div className = "carts">
         {this.nextLink(isLastCart)}
-        {this.skipLink(isLastCart)}
+        {this.skipLink(isLastCart, isAutoSkipping)}
         <span className = "carts-list">
           <ReactCSSTransitionGroup transitionName = "move-carts">
             {this.getNextCarts()}
