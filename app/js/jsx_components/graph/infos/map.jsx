@@ -10,24 +10,24 @@ var land = topojson.feature(world, world.objects.countries);
 var countries = topojson.feature(world, world.objects.countries).features;
 
 var WorldMap = React.createClass({
-  getInitialState: function() {
-    return {
-      projection: {},
-      borders: {},
-      land: {},
-      countries: []
-    };
-  },
+  projection: {},
+  borders: {},
+  land: {},
+  countries: [],
+
   componentDidMount: function() {
-    this.setState({borders: borders, land: land, countries: countries})
+    this.borders   = borders
+    this.land      = land
+    this.countries = countries
+    this.projection = d3.geo.orthographic().scale(200).translate([this.props.width / 2, this.props.height / 2]).clipAngle(90)
+
     this.renderMap({canvas: this.getMap()});
   },
-  componentWillReceiveProps: function() {
-    // this.setState({borders: borders, land: land, countries: countries})
-    this.renderMap({canvas: this.getMap()});
+  shouldComponentUpdate: function (nextProps) {
+    return  nextProps.country !== this.props.country
   },
   getCountry() {
-    var country = this.state.countries.filter(function(country) {
+    var country = this.countries.filter(function(country) {
       return country.properties.name === this.props.country;
     }.bind(this));
     if (typeof country[0] !== 'undefined') var selectedCountry = country[0];
@@ -55,7 +55,7 @@ var WorldMap = React.createClass({
   drawMap: function(params) {
     params.canvas.clearRect(0, 0, this.props.width, this.props.height);
 
-    this.drawPolygon({ fill: '#bbb', area: this.state.land, strokeFill: '#fff', lineWidth : .5, borderPath : this.state.borders, canvas: params.canvas, path: params.path});
+    this.drawPolygon({ fill: '#bbb', area: this.land, strokeFill: '#fff', lineWidth : .5, borderPath : this.borders, canvas: params.canvas, path: params.path});
     this.drawPolygon({ fill: '#f26522', area: params.selectedCountry, strokeFill: '#000', lineWidth: 2, borderPath: {type: "Sphere"}, canvas: params.canvas, path: params.path});
   },
   rotate: function(params) {
@@ -64,10 +64,13 @@ var WorldMap = React.createClass({
     d3.transition()
       .duration(1250)
       .tween("rotate", function() {
-        var p = d3.geo.centroid(selectedCountry),
-            r = d3.interpolate(this.state.projection.rotate(), [-p[0], -p[1]]);
+        var p = [0,0]
+        if (selectedCountry)
+          p = d3.geo.centroid(selectedCountry)
+
+        var r = d3.interpolate(this.projection.rotate(), [-p[0], -p[1]]);
         return function(t) {
-          this.state.projection.rotate(r(t));
+          this.projection.rotate(r(t));
           if (!params.path) params.path = this.getPath({canvas: params.canvas});
           this.drawMap({path: params.path, canvas: params.canvas, selectedCountry: selectedCountry});
         }.bind(this);
@@ -75,19 +78,17 @@ var WorldMap = React.createClass({
   },
   getPath(params) {
     return d3.geo.path()
-      .projection(this.state.projection)
+      .projection(this.projection)
       .context(params.canvas);
   },
   renderMap: function(params) {
-    this.setState({projection: d3.geo.orthographic().scale(200).translate([this.props.width / 2, this.props.height / 2]).clipAngle(90)});
 
     var path = this.getPath({canvas: params.canvas});
 
     this.rotate({path: path, canvas: params.canvas});
   },
   render: function () {
-    if (this.refs.mapCanvas) this.rotate({canvas: this.getMap()});
-
+    if (this.refs.mapCanvas) this.renderMap({canvas: this.getMap()});
     return(
       <canvas className="globe" ref="mapCanvas" width={this.props.width} height={this.props.height}></canvas>
     );
