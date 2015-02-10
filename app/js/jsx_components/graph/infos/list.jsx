@@ -1,8 +1,10 @@
 "use strict";
 
 var React = require('react/addons');
+var guiActions = require('../../../actions/guiActions');
 
-var UsedIn = React.createClass({
+
+var List = React.createClass({
 
   listParts: function () {
     var partList = this.props.items.map(function(part) {
@@ -33,8 +35,9 @@ var UsedIn = React.createClass({
       partList[0] = (
         <li 
           key       = 'unkown'
-          className = "item-name">
-          ????
+          className = "item-name clickable"
+          onClick   = {guiActions.logInClicked}>
+          missing Data
         </li>
       )
     }
@@ -54,4 +57,4 @@ var UsedIn = React.createClass({
   }
 });
 
-module.exports = UsedIn;
+module.exports = List;
