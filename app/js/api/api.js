@@ -15,6 +15,13 @@ var Api = {
       url: config.apiPrefix + config.endpoints.materials,
       type: 'json'
     });
+  },
+
+  loadCountryShares: function() {
+    return reqwest({
+      url: config.apiPrefix + config.endpoints.materials,
+      type: 'json'
+    });
   }
 }
 module.exports = Api;

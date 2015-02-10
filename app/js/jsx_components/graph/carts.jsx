@@ -12,14 +12,6 @@ var StopLight = require('./stopLight.jsx');
 var Page = React.createClass({
   numberOfCarts: 3,
 
-  COLORS: {
-    red:        0,
-    orange:     25,
-    yellow:     50,
-    lightGreen: 70,
-    green:      90,
-  },
-
   getNextCarts: function () {
     var carts  = []
     ,   offset = this.props.fromStore.cartOffset
@@ -105,12 +97,12 @@ var Page = React.createClass({
 
         <Infos 
           material       = {currentMaterial} 
-          colors         = {this.COLORS}
+          colors         = {this.props.fromStore.COLORS}
           fromStore      = {this.props.fromStore}
         />
         <StopLight 
           color       = {currentMaterial? currentMaterial.color : null} 
-          colors      = {this.COLORS}
+          colors      = {this.props.fromStore.COLORS}
           unshure     = {currentMaterial? currentMaterial.unshureFlag : null}
           popupIsOpen = {this.props.fromStore.stopLightPopupOpen}
         />

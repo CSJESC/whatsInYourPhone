@@ -2,7 +2,7 @@
 
 var React = require('react');
 
-var guiStore   = require('../stores/guiStore');
+var store   = require('../stores/store');
 var apiActions = require('../actions/apiActions');
 
 var Graph      = require('./graph.jsx');
@@ -14,12 +14,12 @@ var Page = React.createClass({
   },
 
   componentDidMount: function() {
-    this.unsubscribeGuiStore = guiStore.listen(this.guiStoreChanged);
+    this.unsubscribeStore = store.listen(this.guiStoreChanged);
     apiActions.loadDeviceMaterials();
   },
 
   componentWillUnmount: function() {
-    this.unsubscribeGuiStore();
+    this.unsubscribeStore();
   },
 
   guiStoreChanged: function (storeState) {
