@@ -15,10 +15,10 @@ var Navigation = React.createClass({
 
         <ul className ="nav-list">
           <li className ="nav-item">
-            <a className = "nav-link" href = "">Home</a>
+            <a className = "nav-link" href = "/">Home</a>
           </li>
           <li className ="nav-item">
-            <a className = "nav-link" href = "">Impressum</a>
+            <a className = "nav-link" href = "/impressum.html">Impressum</a>
           </li>
           
         </ul>
