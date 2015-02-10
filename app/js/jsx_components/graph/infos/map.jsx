@@ -22,6 +22,10 @@ var WorldMap = React.createClass({
     this.setState({borders: borders, land: land, countries: countries})
     this.renderMap({canvas: this.getMap()});
   },
+  componentWillReceiveProps: function() {
+    // this.setState({borders: borders, land: land, countries: countries})
+    this.renderMap({canvas: this.getMap()});
+  },
   getCountry() {
     var country = this.state.countries.filter(function(country) {
       return country.properties.name === this.props.country;
