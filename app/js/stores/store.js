@@ -130,8 +130,8 @@ var Store = Reflux.createStore({
     this.trigger(this.state);
   },
 
-  onloadCountrySharesSuccess: function(material, shares, err) {
-    var ratingValues = this.calcMaterialRating(material, shares)
+  onloadCountrySharesSuccess: function(material, countryShares, err) {
+    var ratingValues = this.calcMaterialRating(material, countryShares)
     if (ratingValues)
         this.onRatingCalculated(ratingValues)
   },
@@ -149,7 +149,7 @@ var Store = Reflux.createStore({
     this.state.selectedCountry = currentMaterial? currentMaterial.minedIn[0] : null
   },
 
-  calcMaterialRating: function (material) {
+  calcMaterialRating: function (material, countryShares) {
     if (!material)
       return false
 
@@ -201,7 +201,6 @@ var Store = Reflux.createStore({
     var countryRating
     if (material.minedIn.length > 0) {
       countryRating = 0
-      var fallbackShare = 1 / material.minedIn.length
 
       material.minedIn.forEach(function (country) {
         var currentCountryRating = 0;
@@ -211,11 +210,13 @@ var Store = Reflux.createStore({
           }
         }
         // average contry rating normalized by its share on mining the material
-        countryRating += currentCountryRating * (country.share || fallbackShare);
+        var countryShare = this.getCountryShare(country, countryShares)
+        countryRating += currentCountryRating * countryShare;
       }.bind(this));
 
       finalRating += countryRating * FACTORS.country_factor;
       countryRating = parseInt(countryRating)
+
     } else {
       unshureFlag = true
     }
@@ -223,6 +224,16 @@ var Store = Reflux.createStore({
 
     var color = this.getColor(finalRating);
     return {material: material, color: color, countryRating: countryRating, unshureFlag: unshureFlag}
+  },
+
+  getCountryShare: function (country, countryShares) {
+    for (var share in countryShares) {
+      if (share.country_materials == country.id && share.share) {
+        return share.share / 100
+      }
+    }
+    // fallback use equal weigting for countries
+    return 1 / countryShares.length
   },
 
   getColor: function (rating) {
