@@ -59,37 +59,42 @@
     line-height 25px
     margin      0
     z-index     10
-    
+  
 .next
-.skip
-  top      50px
-  cursor   pointer
-  z-index  40
+.skip-link
   &:hover
     color     orange
     transition color 0.5s
-
-.next,
+  
+  
+.next
 .skip
   position       absolute
   top            210px
   text-transform uppercase
   font-size      40px
   user-select    none
+  z-index        40
   .icono-rewind
   .icono-pause
   .icono-caretLeft
+  .icono-previous
+  .icono-clock
     color     inherit
     transform scale(-1.5)
     margin    -7px 10px 0 0
-
+  .icono-clock
+    margin-right 30px
   
 .next
-  left           60px
+  left     60px
+  cursor   pointer
 .skip
-  right          10px
-  color          dark-grey
-  
+  right  10px
+  color  dark-grey
+.skip-link
+  cursor       pointer
+  margin-right 10px
   
 // animate carts
 .move-carts-leave 

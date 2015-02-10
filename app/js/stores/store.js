@@ -30,6 +30,7 @@ var Store = Reflux.createStore({
     this.listenTo(apiActions.loadMaterialSuccess,      this.onApiDidLoadMaterials);
     this.listenTo(apiActions.loadCountrySharesSuccess, this.onloadCountrySharesSuccess);
     this.listenTo(guiActions.moveCarts,                this.onCartMoved);
+    this.listenTo(guiActions.autoMoveCarts,            this.onAutoMoveCarts);
     this.listenTo(guiActions.skipCarts,                this.onSkipCharts);
     this.listenTo(guiActions.ratingCalculated,         this.onRatingCalculated);
     this.listenTo(guiActions.stopLightClicked,         this.onStopLightClicked);
@@ -86,11 +87,6 @@ var Store = Reflux.createStore({
   },
   
   onCartMoved: function () {
-    if (this.moveIsBlocked)
-      return false
-
-    this.moveIsBlocked = true
-
     var currentMaterial = this.state.allMaterials[this.state.cartOffset]
     ,   nextMaterial    = this.state.allMaterials[this.state.cartOffset + 1]
     this.state.cartOffset += 1;
@@ -104,17 +100,24 @@ var Store = Reflux.createStore({
     if (this.state.cartOffset >= this.state.allMaterials.length) {
       clearInterval(this.skipIntervall)
       this.state.logInPopupOpen = true
+      this.trigger(this.state);
     } else {
       apiActions.loadCountryShares(nextMaterial)
     }
+  },
+
+  onAutoMoveCarts: function () {
+    clearInterval(this.skipIntervall)
+    if (!this.state.isAutoSkipping)
+      this.skipIntervall = setInterval(this.onCartMoved.bind(this), 900)
+    this.state.isAutoSkipping = !this.state.isAutoSkipping
     this.trigger(this.state);
-    setTimeout(function(){this.moveIsBlocked = false}.bind(this),800)
   },
 
   onSkipCharts: function () {
     clearInterval(this.skipIntervall)
     if (!this.state.isAutoSkipping)
-      this.skipIntervall = setInterval(this.onCartMoved.bind(this), 800)
+      this.skipIntervall = setInterval(this.onCartMoved.bind(this), 0)
     this.state.isAutoSkipping = !this.state.isAutoSkipping
     this.trigger(this.state);
   },

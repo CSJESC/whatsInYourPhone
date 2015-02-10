@@ -56,23 +56,33 @@ var Page = React.createClass({
 
   skipLink: function (isLastCart, isRunning) {
     if (!isLastCart) {
+      var skipIcon = <span className = 'icono-previous'/>
       return (
-        <a 
-          className = "skip"
-          onClick   = {guiActions.skipCarts}
-        > 
-          <span className = {isRunning? 'icono-pause' : 'icono-rewind'}/>
-          {isRunning? 'stop' : 'Mine all'}
-        </a>
+        <div className = "skip">
+          <a 
+            className = "skip-link"
+            onClick   = {guiActions.skipCarts}
+          > 
+            {!isRunning? skipIcon : null}
+          </a>
+          <a 
+            className = "skip-link"
+            onClick   = {guiActions.autoMoveCarts}
+          > 
+            <span className = {isRunning? 'icono-pause' : 'icono-rewind'}/>
+          </a>
+        </div>
       )
     } else {
       return (
-        <a 
-          className = "skip"
-          onClick   = {this.reload}
-        > 
-          &#8634;
-        </a>
+        <div className = "skip">
+          <a 
+            className = "skip-link"
+            onClick   = {this.reload}
+          > 
+            &#8634;
+          </a>
+        </div>
       )
     }
   },

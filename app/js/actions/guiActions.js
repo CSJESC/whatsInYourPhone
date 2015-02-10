@@ -2,6 +2,7 @@ var Reflux = require('reflux');
 var MaterialApi = require('../api/api');
 var guiActions = Reflux.createActions([
   'moveCarts',
+  'autoMoveCarts',
   'skipCarts',
   'ratingCalculated',
   'stopLightClicked',
