@@ -4,10 +4,23 @@
 
 require('es5-shim-sham'); // polyfills
 var React = require('react');
-var Page  = React.createFactory(require('./js/jsx_components/page.jsx'));
+var Page         = React.createFactory(require('./js/jsx_components/page.jsx'));
+var Methodology  = React.createFactory(require('./js/jsx_components/methodology.jsx'));
 
 // add Page to html
-window.onload = function () {
+var loadPage = function () {
   var content = document.getElementById('content');
-  React.render(Page(null), content);
+  var hash    = location.hash
+  hash = hash.replace('#','')
+
+  switch (hash) {
+    case 'methodology':
+      React.render(Methodology(null), content)
+      break
+    default:
+      React.render(Page(null), content)
+  }
 }
+
+window.onload       = loadPage 
+window.onhashchange = loadPage

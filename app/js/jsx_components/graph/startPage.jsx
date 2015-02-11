@@ -8,12 +8,17 @@ var StartPage = React.createClass({
       <div className = "infos-inner start-page">
         <h2 className ="title">StartPage</h2>
         <p>
-          Due to missing data and information about the electronics supply chain, it is, in fact, objectively 
-          impossible to analyse these problems in depth and investigate their relative consequences.
+          Due to missing data and information about the electronics supply
+          chain, it is, in fact, extremely difficult to produce an adequate
+          analysis of the conditions under which people participate in various
+          stages of the processes.
         </p>
         <p>
-          The internet, however, could play an essential role in gathering information to increase public awareness 
-          about the topic and, ultimately, improve corporate responsibility of manufacturers.
+          The internet, however, may be able to play an important  role in
+          helping gather information which could be used to improve general
+          public understanding about some of the more troubling social and
+          economic justice issues at hand.  If you want to help fill out our
+          material models please (click on the right/contact us).
         </p>
       </div>
     )

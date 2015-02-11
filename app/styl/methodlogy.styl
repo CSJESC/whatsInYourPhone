@@ -1,0 +1,35 @@
+.methodology
+  width            780px
+  margin           30px auto 0
+  padding          20px 40px
+  background-color rgba(light-grey,0.9)
+  
+  h1
+    color light-green
+  h2 
+    color white
+  h3
+    color white
+  h4
+    color  light-green
+    margin 0 0 -10px 0
+    
+  a
+    color black
+    text-decoration: none
+    &:hover
+      color orange
+      
+  ol
+    counter-reset points 5
+    li::before
+        counter-increment points -1
+        content           counter(points) ": "
+        color             orange
+        font-weight       600
+        
+  li
+    list-style none
+      
+.methodology-wrapper .nav
+  width 780px

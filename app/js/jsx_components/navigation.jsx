@@ -9,7 +9,7 @@ var Navigation = React.createClass({
       <nav className = "nav">
         <ul className ="nav-list-left">
           <li className ="nav-item">
-            <a className = "nav-link" href = "">Methodology</a>
+            <a className = "nav-link" href = "/#methodology">Methodology</a>
           </li>
         </ul>
 
