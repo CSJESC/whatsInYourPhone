@@ -2,8 +2,8 @@
 
 var React = require('react');
 
-var Navigation = require('./navigation.jsx');
-var Link       = require('./link.jsx');
+var Navigation = require('./general/navigation.jsx');
+var Link       = require('./general/link.jsx');
 
 var Methodology = React.createClass({
 

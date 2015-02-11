@@ -2,11 +2,11 @@
 
 var React = require('react');
 
-var store   = require('../stores/store');
+var store      = require('../stores/store');
 var apiActions = require('../actions/apiActions');
 
 var Graph      = require('./graph.jsx');
-var Navigation = require('./navigation.jsx');
+var Navigation = require('./general/navigation.jsx');
 
 var Page = React.createClass({
   getInitialState: function () {
