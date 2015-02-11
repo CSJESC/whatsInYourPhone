@@ -13,9 +13,10 @@ var Page = React.createClass({
 
     var cx = React.addons.classSet;
     var classes = cx({
-      'cart':    true,
-      'unshure': unshure,
-      'unkown':  !this.props.material
+      'cart':         true,
+      'unshure':      unshure,
+      'unkown':       !this.props.material,
+      'dont-animate': !this.props.animate
     })
 
     return (

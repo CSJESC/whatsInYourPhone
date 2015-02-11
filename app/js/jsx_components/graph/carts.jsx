@@ -25,7 +25,8 @@ var Page = React.createClass({
       carts.push(
         <Cart 
         key      = {key}
-        material = {material} />
+        material = {material}
+        animate  = {!this.props.fromStore.isAllSkipping} />
       );
     }
     return carts;

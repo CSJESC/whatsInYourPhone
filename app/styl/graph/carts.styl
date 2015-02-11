@@ -59,6 +59,13 @@
     line-height 25px
     margin      0
     z-index     10
+   
+  // hide all but unkown carts
+  // this is used when skipping all carts at once 
+  &.dont-animate
+    display none
+    &.unkown
+      display block
   
 .next
 .skip-link

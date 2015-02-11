@@ -17,6 +17,7 @@ var Store = Reflux.createStore({
       logInPopupOpen:     false,
 
       isAutoSkipping: false,
+      isAllSkipping:  false,
 
       COLORS: {
         red:        0,
@@ -119,6 +120,7 @@ var Store = Reflux.createStore({
     if (!this.state.isAutoSkipping)
       this.skipIntervall = setInterval(this.onCartMoved.bind(this), 0)
     this.state.isAutoSkipping = !this.state.isAutoSkipping
+    this.state.isAllSkipping  = true
     this.trigger(this.state);
   },
 
