@@ -11,11 +11,12 @@ var Methodology = React.createClass({
     return(
       <div className = "methodology-wrapper">
         <div className = "methodology">
-        <h1>SCORING SYSTEM</h1>
+          <a className = "close" href = "./">&#10005;</a>
+          <h1>SCORING SYSTEM</h1>
           <p>
             <img src = "./img/meth01.png" alt = "Each cart represents an individual material. Every material in the database is given a score from 0 to 100 points and, based on its score, is  assigned a color accordingly." />
           </p>
-        <h1>METHODOLOGY</h1>
+          <h1>METHODOLOGY</h1>
           <p>
             <img src = "./img/meth02.png" alt = "Methodology chart" />
           </p>

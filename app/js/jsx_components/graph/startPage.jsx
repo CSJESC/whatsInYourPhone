@@ -6,7 +6,7 @@ var StartPage = React.createClass({
   render: function () {
     return (
       <div className = "infos-inner start-page">
-        <h2 className ="title">StartPage</h2>
+        <h2 className ="title">Discover materials in a standard phone</h2>
         <p>
           Due to missing data and information about the electronics supply
           chain, it is, in fact, extremely difficult to produce an adequate
