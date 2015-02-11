@@ -1,7 +1,6 @@
 #wrapper {
-    border-style: solid;
-    width: 960px;
-    margin: 0 auto;
+    width: 700px;
+    margin: 30px auto 0;
     padding: 2px;
     background-color: #47413f;
     color:#FFF
@@ -22,16 +21,17 @@
     left: 0;
     right: 0;
     margin: auto auto;
-    /*opacity: 0;*/
     padding: 15px;
     position: absolute;
     top: 200px;
     transform: translateY(300px) scale(0.8);
     transition: opacity 0.3s ease 0s, visibility 0.3s ease 0s, transform 0.3s ease 0s;
-    /*visibility: hidden;*/
     width: 730px;
     z-index: 1001;
     color:#000;
+}
+.close-add-menus {
+    cursor: pointer;
 }
 #add-country-btn {
     color: #000 !important;
@@ -47,17 +47,15 @@
     height: 70px;
     left: -15px;
     position: relative;
-    width: 960px;
+    width: 700px;
 }
 
 .button {
     background: #0d6;
     border: 1px solid #0d6;
     color: #fff;
-    font-family: sans-serif;
     font-size: 22px;
     font-weight: 300;
-    height: 30px;
     letter-spacing: 1px;
     overflow: hidden;
     padding: 11px;
@@ -65,16 +63,17 @@
     text-transform: uppercase;
     transition: all 0.5s ease 0s;
     width: 250px;
+    cursor: pointer;
 }
 
 #country-btn {
     position: absolute;
-    right: 100px;
+    right: 50px;
 }
 
 #resource-btn {
     position: absolute;
-    left: 100px;
+    left: 50px;
 }
 
 .button:hover, .button:active {
@@ -141,7 +140,7 @@
 }
 
 #new_resource {
-    margin: 0 auto;
+    margin: 50px auto;
     padding-bottom: 15px;
 }
 
@@ -150,14 +149,15 @@
     margin: 25px auto;
     position: relative;
     right: 0;
-    width: 50%;
+    width: 80%;
 }
 
+textarea,
 input {
     font-size: 18px;
     padding: 10px 10px 10px 5px;
     display: block;
-    width: 300px;
+    width: 100%;
     border: none;
     border-bottom: 1px solid #757575;
 }
@@ -188,7 +188,7 @@ input:focus ~ label, input:valid ~ label {
 .bar {
     position: relative;
     display: block;
-    width: 300px;
+    width: 100%;
 }
 
 .bar:before, .bar:after {
@@ -283,7 +283,7 @@ button:hover {
 
 #resource-list {
     margin-left: -16px;
-    width: 963px;
+    width: 700px;
 }
 
 .resource-item {
@@ -364,7 +364,7 @@ button:hover {
 }
 
 .country-item .score {
-    font-size: 18px;
+    font-size: 14px;
     left: 300px;
     position: absolute;
     top: 28px;
@@ -378,11 +378,11 @@ button:hover {
 }
 
 .desc_label {
-    top: -10px;
+    top: -30px;
 }
 
 #res_description {
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 .slidertext {

@@ -8,6 +8,16 @@ var uploaderActions = require('../../actions/uploaderActions')
 
 
 var EditMaterial = React.createClass({
+
+  componentDidEnter: function() {
+    setTimeout(function() {this.getDOMNode().setAttribute("class", "add-menu visible")}.bind(this), 20)
+  },
+
+  componentWillLeave: function(callback) {
+    this.getDOMNode().setAttribute("class", "add-menu")
+    setTimeout(callback, 200)
+  },
+
   getDefaultProps: function() {
     return {
       material: {
@@ -137,12 +147,6 @@ var EditMaterial = React.createClass({
                 <span className="highlight"></span>
                 <span className="bar"></span>
                 <label className="desc_label">Description</label>
-            </div>
-            <div className="multiselect-wrapper">
-                <select multiple id="countries-multiselect" name="countries">
-                </select>
-            </div>
-            <div className="slider-wrapper">
             </div>
             <div className="submit-wrapper">
                 <button
