@@ -24,7 +24,7 @@ var Store = Reflux.createStore({
     this.listenTo(uploaderActions.editMaterial,    this.onEditMaterial);
     this.listenTo(uploaderActions.toggleCountry,   this.onToggleCountry);
     this.listenTo(uploaderActions.updateShare,     this.onUpdateShare);
-    
+    this.listenTo(uploaderActions.resetShares,      this.onResetShares);
 
     this.listenTo(uploaderActions.listCountries,    this.onListCountries);
     this.listenTo(uploaderActions.editCountry,      this.onEditCountry);
@@ -76,37 +76,44 @@ var Store = Reflux.createStore({
 
     if (material.minedIn.length === 0)
       delete material.minedIn
+
+    this.onResetShares(material)
     
     this.trigger(this.state)
   },
 
-  onUpdateShare: function(material, countryId, xDiff) {
+  onUpdateShare: function(material, countryId, numberOfShares, xDiff) {
     var oldShare    = material.shares[countryId]
     var sliderWidth = oldShare * 4 + xDiff
     share = sliderWidth / 4
 
     if (share > 100) share = 100
-    if (share < 0)   share = 0
-    
-    material.shares[countryId] = share
+    if (share < 1)   share = 1
 
     // reduce difference from other shares
     var leftover = 100 - share
 
-    for (share in material.shares) {
-      if (share != countryId) {
+    for (key in material.shares) {
+      if (key != countryId) {
         // update all according to thier share
-        var divisor = (100 - oldShare)
-        if (divisor > 0) {
-          material.shares[share] = leftover * material.shares[share] / divisor
-        } else {
-          material.shares[share] = 0
+        
+        updatedShare = leftover * material.shares[key] / (100 - oldShare)
+        if (updatedShare < 1 || !isFinite(updatedShare)) {
+          updatedShare = 1
+          // make shure sum equals 100
+          share = 100 - numberOfShares + 1
         }
+        material.shares[key] = updatedShare
       }
 
     }
+    material.shares[countryId] = share
 
     this.trigger(this.state)
+  },
+
+  onResetShares: function (material) {
+    material.shares = {}
   },
 
   onListCountries: function() {

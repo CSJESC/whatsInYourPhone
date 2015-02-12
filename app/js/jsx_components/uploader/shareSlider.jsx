@@ -26,7 +26,7 @@ var ShareSlider = React.createClass({
 
     var xDiff = evt.pageX - this.prevX
     this.prevX = evt.pageX
-    uploaderActions.updateShare(this.props.material, countryId, xDiff)
+    uploaderActions.updateShare(this.props.material, countryId, this.props.material.minedIn.length, xDiff)
   },
 
   listCountries: function(material) {
@@ -67,6 +67,9 @@ var ShareSlider = React.createClass({
   },
 
   render: function () {
+    if (!this.props.material.minedIn || this.props.material.minedIn.length === 0)
+      return null
+
     return (
       <div className = "share-slider">
         {this.listCountries(this.props.material)}
