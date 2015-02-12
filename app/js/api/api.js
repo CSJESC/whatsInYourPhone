@@ -21,8 +21,15 @@ var Api = {
 
   loadCountryShares: function(materialId) {
     return reqwest({
-      url: config.apiPrefix + config.endpoints.countryShare + '?country_materials=' + materialId,
+      url: config.apiPrefix + config.endpoints.countryShare + '?material_minedIn=' + materialId,
       type: 'json'
+    });
+  },
+
+  updateCountryShares: function(share) {
+    return reqwest({
+      url:  config.apiPrefix + config.endpoints.countryShare + '/update/' + share.id,
+      data: share
     });
   },
 

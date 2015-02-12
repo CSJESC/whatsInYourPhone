@@ -5,21 +5,21 @@ var uploaderActions = require('../actions/uploaderActions');
 var Store = Reflux.createStore({
   init: function() {
     this.state = {
-      countries:       [],
-      allMaterials:    [],
-      currentMaterial: null,
-      currentCountry:  null,
+      countries:            [],
+      allMaterials:         [],
+      currentMaterial:      null,
+      currentCountry:       null,
 
       editWindowOpen:          false,
       countriesWindowOpen:     false,
       countriesEditWindowOpen: false,
     };
 
-    this.listenTo(apiActions.loadMaterialSuccess,   this.onApiDidLoadMaterials);
-    this.listenTo(apiActions.materialChangeSuccess, this.onMaterialChangeSuccess);
-    this.listenTo(apiActions.loadCountriesSuccsess, this.onLoadCountriesSuccsess);
-    this.listenTo(apiActions.countryChangeSuccess,  this.onCountryChangeSuccess);
-    
+    this.listenTo(apiActions.loadMaterialSuccess,      this.onApiDidLoadMaterials);
+    this.listenTo(apiActions.materialChangeSuccess,    this.onMaterialChangeSuccess);
+    this.listenTo(apiActions.loadCountriesSuccsess,    this.onLoadCountriesSuccsess);
+    this.listenTo(apiActions.countryChangeSuccess,     this.onCountryChangeSuccess);
+    this.listenTo(apiActions.loadCountrySharesSuccess, this.onloadCountrySharesSuccess);
 
     this.listenTo(uploaderActions.editMaterial,    this.onEditMaterial);
     this.listenTo(uploaderActions.toggleCountry,   this.onToggleCountry);
@@ -50,6 +50,16 @@ var Store = Reflux.createStore({
 
   onCountryChangeSuccess: function() {
     this.closePopups()
+    this.trigger(this.state)
+  },
+
+  onloadCountrySharesSuccess: function(material, shares) {
+    var shareObj = {}
+    shares.forEach(function(share) {
+      shareObj[share.country_materials] = share.share
+    }.bind(this))
+
+    material.shares = shareObj
     this.trigger(this.state)
   },
 

@@ -35,12 +35,31 @@ apiActions.loadCountries.preEmit = function() {
   MaterialApi.loadCountries()
     .then(apiActions.loadCountriesSuccsess, apiActions.error);
 };
+var updateCountryShares = function (material) {
+  var count = 0
+  var isSuccess = function (data) {
+    count += 1
+    if (count >= material.minedIn.length)
+      apiActions.materialChangeSuccess()
+  }
+  // get list of shares for material
+  MaterialApi.loadCountryShares(material.id)
+    .then(function (shares) {
+      shares.forEach(function (share) {
+        share.share = parseInt(material.shares[share.country_materials])
+        MaterialApi.updateCountryShares(share)
+          .then(isSuccess, apiActions.error);
+      })
+    })
+    .fail(apiActions.error)
+};
 
 apiActions.updateMaterial.preEmit = function() {
-  var material = arguments[0]
+  var material  = arguments[0]
+  var shareData = arguments[1]
 
   MaterialApi.updateMaterial(material)
-    .then(apiActions.materialChangeSuccess, apiActions.error);
+    .then(updateCountryShares.bind(null, material), apiActions.error);
 };
 
 apiActions.createMaterial.preEmit = function() {

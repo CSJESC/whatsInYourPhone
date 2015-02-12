@@ -151,6 +151,25 @@ var Methodology = React.createClass({
             <Link href = "=>">http://www.dolbear.com/news-resources/documents</Link>
           </p>
 
+          <h1>Data about the materials</h1>
+          <p>
+          <Link href = "=>">
+            http://www.phonearena.com/news/Smartphone-chemistry-the-secret-materials-that-make-your-handset-tick_id60746
+          </Link>
+          </p>
+          <p>
+          <Link href = "=>">
+            http://www.oeko.de/oekodoc/1375/2012-010-en.pdf
+          </Link>
+          </p>
+          <p>
+          <Link href = "=>">
+            http://www.chamberofmines.org.na/fileadmin/user_upload/May_2014/5.1_Minerals_in_our_everyday_use.pdf
+          </Link>
+          </p>
+
+          <Link href = "=>">https://germanwatch.org/de/download/2263.pdf</Link>
+
         </div>
         <Navigation />
       </div>

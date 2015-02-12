@@ -28,6 +28,7 @@ var EditMaterial = React.createClass({
   },
 
   componentWillMount: function () {
+    apiActions.loadCountryShares(this.props.material)
     this.minedInToIds()
   },
 
