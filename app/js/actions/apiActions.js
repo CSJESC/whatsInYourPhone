@@ -28,7 +28,7 @@ apiActions.loadCountryShares.preEmit = function() {
   var material = arguments[0]
 
   MaterialApi.loadCountryShares(material.id)
-    .then(apiActions.loadCountrySharesSuccess.bind(null, material), apiActions.error);
+    .always(apiActions.loadCountrySharesSuccess.bind(null, material));
 };
 
 apiActions.loadCountries.preEmit = function() {

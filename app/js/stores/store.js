@@ -135,13 +135,13 @@ var Store = Reflux.createStore({
     this.trigger(this.state);
   },
 
-  onloadCountrySharesSuccess: function(material, countryShares, err) {
+  onloadCountrySharesSuccess: function(material, countryShares) {
     var ratingValues = this.calcMaterialRating(material, countryShares)
     if (ratingValues)
-        this.onRatingCalculated(ratingValues)
+      this.onRatingCalculated(ratingValues)
   },
 
-  onApiDidLoadMaterials: function (materials, err) {
+  onApiDidLoadMaterials: function (materials) {
     this.state.allMaterials = materials
     this.trigger(this.state)
   },
@@ -215,7 +215,7 @@ var Store = Reflux.createStore({
           }
         }
         // average contry rating normalized by its share on mining the material
-        var countryShare = this.getCountryShare(country, countryShares)
+        var countryShare = this.getCountryShare(material, country, countryShares)
         countryRating += currentCountryRating * countryShare;
       }.bind(this));
 
@@ -231,14 +231,14 @@ var Store = Reflux.createStore({
     return {material: material, color: color, countryRating: countryRating, unshureFlag: unshureFlag}
   },
 
-  getCountryShare: function (country, countryShares) {
+  getCountryShare: function (material, country, countryShares) {
     for (var share in countryShares) {
       if (share.country_materials == country.id && share.share) {
         return share.share / 100
       }
     }
     // fallback use equal weigting for countries
-    return 1 / countryShares.length
+    return 1 / material.minedIn.length
   },
 
   getColor: function (rating) {
