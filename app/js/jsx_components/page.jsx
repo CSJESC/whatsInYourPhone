@@ -35,7 +35,7 @@ var Page = React.createClass({
       <div
         className = "view">
         <Graph fromStore = {this.state} />
-        <Navigation />
+        <Navigation logedIn = {this.state.logedIn} />
       </div>
     );
 

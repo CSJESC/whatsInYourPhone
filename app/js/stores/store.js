@@ -19,6 +19,8 @@ var Store = Reflux.createStore({
       isAutoSkipping: false,
       isAllSkipping:  false,
 
+      logedIn: false,
+
       COLORS: {
         red:        0,
         orange:     25,
@@ -30,6 +32,7 @@ var Store = Reflux.createStore({
 
     this.listenTo(apiActions.loadMaterialSuccess,      this.onApiDidLoadMaterials);
     this.listenTo(apiActions.loadCountrySharesSuccess, this.onloadCountrySharesSuccess);
+
     this.listenTo(guiActions.moveCarts,                this.onCartMoved);
     this.listenTo(guiActions.autoMoveCarts,            this.onAutoMoveCarts);
     this.listenTo(guiActions.skipCarts,                this.onSkipCharts);
@@ -42,6 +45,13 @@ var Store = Reflux.createStore({
     this.listenTo(guiActions.logInClicked,             this.onLogInClicked);
     this.listenTo(guiActions.logInCloseClicked,        this.onLogInCloseClicked);
     this.listenTo(guiActions.selectCountry,            this.onSelectCountry);
+    this.listenTo(guiActions.checkLogin,               this.onCheckLogin);
+  },
+
+  onCheckLogin: function () {
+    this.state.logedIn = (this.getCookie('OA') == 'true')
+    console.log(this.state.logedIn)
+    this.trigger(this.state)
   },
 
   onSelectCountry: function (country, e) {
@@ -55,8 +65,12 @@ var Store = Reflux.createStore({
   },
 
   onLogInClicked: function () {
-    this.state.logInPopupOpen = true
-    this.trigger(this.state)
+    if (this.getCookie('OA') == 'true') {
+      location.hash = '#uploader'
+    } else {
+      this.state.logInPopupOpen = true
+      this.trigger(this.state)
+    }
   },
 
   onSelectDeviceMaterial: function (material) {
@@ -100,6 +114,8 @@ var Store = Reflux.createStore({
     }
     if (this.state.cartOffset >= this.state.allMaterials.length) {
       clearInterval(this.skipIntervall)
+      // open log in popup
+      this.state.logedIn        = (this.getCookie('OA') == 'true')
       this.state.logInPopupOpen = true
       this.trigger(this.state);
     } else {
@@ -250,6 +266,36 @@ var Store = Reflux.createStore({
     }
     return colorName
   },
+
+  // extracted from
+  /*\
+  |*|
+  |*|  :: cookies.js ::
+  |*|
+  |*|  A complete cookies reader/writer framework with full unicode support.
+  |*|
+  |*|  Revision #1 - September 4, 2014
+  |*|
+  |*|  https://developer.mozilla.org/en-US/docs/Web/API/document.cookie
+  |*|  https://developer.mozilla.org/User:fusionchess
+  |*|
+  |*|  This framework is released under the GNU Public License, version 3 or later.
+  |*|  http://www.gnu.org/licenses/gpl-3.0-standalone.html
+  |*|
+  |*|  Syntaxes:
+  |*|
+  |*|  * docCookies.setItem(name, value[, end[, path[, domain[, secure]]]])
+  |*|  * docCookies.getItem(name)
+  |*|  * docCookies.removeItem(name[, path[, domain]])
+  |*|  * docCookies.hasItem(name)
+  |*|  * docCookies.keys()
+  |*|
+  \*/
+  getCookie: function (sKey) {
+    if (!sKey) { return null; }
+    return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
+  }
+  // end extracted from
 });
 
 module.exports = Store;

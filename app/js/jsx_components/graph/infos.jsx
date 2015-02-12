@@ -29,7 +29,10 @@ var Infos = React.createClass({
     return (
       <div className = "infos">
         {this.innerInfos()}
-        <InsertDataLink logInPopupOpen = {this.props.fromStore.logInPopupOpen} />
+        <InsertDataLink 
+          logedIn        = {this.props.fromStore.logedIn}
+          logInPopupOpen = {this.props.fromStore.logInPopupOpen} 
+        />
       </div>
     )
   }

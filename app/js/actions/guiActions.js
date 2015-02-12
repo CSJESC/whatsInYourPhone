@@ -12,7 +12,8 @@ var guiActions = Reflux.createActions([
   'selectDeviceMaterial',
   'logInClicked',
   'logInCloseClicked',
-  'selectCountry'
+  'selectCountry',
+  'checkLogin'
 ]);
 
 module.exports = guiActions;

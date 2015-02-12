@@ -13,6 +13,9 @@
     display    block
     margin-top 40px
     cursor     pointer
+    &:hover
+      transform  rotate(5deg)
+      transition transform 0.2s
     
   .popup
     position         absolute
@@ -40,6 +43,10 @@
       border-left   30px solid normal-grey
       border-top    30px solid transparent 
       border-bottom 30px solid transparent
+      
+    .log-in
+      text-align center
+      margin-top 80px
     
     .close
       position  absolute
@@ -49,9 +56,8 @@
       cursor    pointer
       
     .log-in-link
-      display         inline-block
-      vertical-align  top
-      margin          20px 10px
+      display         block
+      margin          60px auto
       width           140px
       text-align      center
       color           white
@@ -74,9 +80,9 @@
       margin  20px auto
       display block
       
-    .icono-twitter
-      transform scale(1.2)
-      color     white
+    // .icono-twitter
+    //   transform scale(1.2)
+    //   color     white
     .github
       height 23px
       fill   white

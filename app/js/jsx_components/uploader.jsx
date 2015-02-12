@@ -65,6 +65,7 @@ var Uploader = React.createClass({
             {this.getPopup()}
           </TransitionGroup>
           <div id="content">
+            <a className = "close" href = "./">&#10005;</a>
             <h1>Resource Management</h1>
             <p>This panel allows you to add, review and edit data related to resources and countries.</p>
             <div id="navigation">
@@ -91,7 +92,7 @@ var Uploader = React.createClass({
             </p>
           </div>
         </div>
-        <Navigation />
+        <Navigation logedIn = {true} />
       </div>
     );
 
