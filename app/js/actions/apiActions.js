@@ -2,12 +2,17 @@ var Reflux = require('reflux');
 var MaterialApi = require('../api/api');
 var apiActions = Reflux.createActions([
   'loadDeviceMaterials',
-  'loadCountryShares',
   'loadMaterialSuccess',
+
+  'loadCountryShares',
   'loadCountrySharesSuccess',
 
+  'loadCountries',
+  'loadCountriesSuccsess',
+
   'updateMaterial',
-  'createMaterial'
+  'createMaterial',
+  'materialChangeSuccess'
 ]);
 
 apiActions.loadDeviceMaterials.preEmit = function() {
@@ -22,17 +27,26 @@ apiActions.loadCountryShares.preEmit = function() {
     .then(apiActions.loadCountrySharesSuccess.bind(null, material), apiActions.error);
 };
 
+apiActions.loadCountries.preEmit = function() {
+  MaterialApi.loadCountries()
+    .then(apiActions.loadCountriesSuccsess, apiActions.error);
+};
 
 apiActions.updateMaterial.preEmit = function() {
   var material = arguments[0]
 
   MaterialApi.updateMaterial(material)
-    // .then(apiActions.loadMaterialSuccess, apiActions.error);
+    .then(apiActions.materialChangeSuccess, apiActions.error);
 };
 
 apiActions.createMaterial.preEmit = function() {
   var material = arguments[0]  
   MaterialApi.createMaterial(material)
+    .then(apiActions.materialChangeSuccess, apiActions.error);
+};
+
+apiActions.materialChangeSuccess.preEmit = function() {
+  apiActions.loadDeviceMaterials()
 };
 
 module.exports = apiActions;

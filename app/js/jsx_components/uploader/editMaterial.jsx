@@ -4,8 +4,7 @@ var React = require('react');
 var apiActions      = require('../../actions/apiActions')
 var uploaderActions = require('../../actions/uploaderActions')
 
-
-
+var CountrySelector = require('./countrySelector.jsx')
 
 var EditMaterial = React.createClass({
 
@@ -29,11 +28,9 @@ var EditMaterial = React.createClass({
   saveValues: function (evt) {
     evt.preventDefault()
     if (this.props.material.isNew) {
-      console.log('post', this.props.material)
       apiActions.createMaterial(this.props.material)
     } else {
       apiActions.updateMaterial(this.props.material)
-      console.log('put', this.props.material)
     }
   },
 
@@ -45,16 +42,6 @@ var EditMaterial = React.createClass({
     if (value == '') value = null
     this.props.material[field] = value
     uploaderActions.updateMaterial()
-  },
-
-  buildStringFromArray: function(arr) {
-    var str = ''
-    arr.forEach(function(item , i) {
-      if (i > 0)
-        str += ', '
-      str += item.name
-    })
-    return str
   },
 
   render: function () {
@@ -147,6 +134,13 @@ var EditMaterial = React.createClass({
                 <span className="highlight"></span>
                 <span className="bar"></span>
                 <label className="desc_label">Description</label>
+            </div>
+            <div className="group">
+              <label className = "mined-in-label">Mined In:</label>
+              <CountrySelector
+               material  = {this.props.material}
+               countries = {this.props.countries}
+              />
             </div>
             <div className="submit-wrapper">
                 <button

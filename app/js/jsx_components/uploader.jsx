@@ -22,6 +22,7 @@ var Uploader = React.createClass({
       this.setState(storeState)
     }.bind(this))
     apiActions.loadDeviceMaterials()
+    apiActions.loadCountries()
   },
 
   componentWillUnmount: function() {
@@ -30,9 +31,14 @@ var Uploader = React.createClass({
 
   getPopup: function() {
     if (this.state.editWindowOpen && this.state.currentMaterial)
-      return <EditMaterial material = {this.state.currentMaterial} />
+      return (
+        <EditMaterial 
+          material  = {this.state.currentMaterial} 
+          countries = {this.state.countries}
+        />
+      )
     if (this.state.editWindowOpen)
-      return <EditMaterial />
+      return <EditMaterial countries = {this.state.countries} />
   },
 
   render: function () {

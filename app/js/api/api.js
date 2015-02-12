@@ -6,6 +6,7 @@ var config = {
   apiPrefix: '/api/v1',
   endpoints: {
     materials:    '/materials',
+    countries:    '/countries',
     countryShare: '/mined'
   }
 };
@@ -25,24 +26,25 @@ var Api = {
     });
   },
 
+  loadCountries: function() {
+    return reqwest({
+      url: config.apiPrefix + config.endpoints.countries + '?sort=name',
+      type: 'json'
+    });
+  },
+
   updateMaterial: function (material) {
-    console.log(material)
+    // clean up material before we send it
+    delete material.usedIn
+
     return reqwest({
       url:  config.apiPrefix + config.endpoints.materials + '/update/' + material.id,
-      data: {
-        name:             material.name,
-        description:      material.description,
-        healthRating:     material.healthRating,
-        recyclingRating:  material.recyclingRating,
-        links:            material.links,
-        youtube:          material.youtube
-      }
+      data: material
     });
   },
 
   createMaterial: function (material) {
     var dataString = JSON.stringify(material)
-    console.log(dataString)
     var req = reqwest({
       method: 'POST',
       contentType: 'application/json',

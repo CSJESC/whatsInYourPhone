@@ -1,6 +1,26 @@
 .uploader
   @import "style.css"
+  .mined-in-label
+    position static
   
-
-
-  
+  .resource-list
+    width            100%
+    margin           10px auto 0
+    padding          0
+    background-color grey
+    overflow         hidden
+    
+    .country
+      list-style    none
+      float         left
+      width         25%
+      padding       3px 10px
+      text-align    center
+      color         white
+      border-bottom 1px solid
+      border-right  1px solid
+      cursor        pointer
+      &:hover
+      &.selected
+        background-color orange
+        transition background-color 0.5s
