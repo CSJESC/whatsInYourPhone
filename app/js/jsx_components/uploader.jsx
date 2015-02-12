@@ -55,7 +55,7 @@ var Uploader = React.createClass({
 
   render: function () {
     if (!this.state) {
-      return <p>hhh</p>;
+      return null
     }
 
     return (
