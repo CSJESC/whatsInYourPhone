@@ -85,6 +85,10 @@ var Uploader = React.createClass({
                 </a>
             </div>
             <MaterialList materials = {this.state.allMaterials} />
+            <h2>API Documentation</h2>
+            <p>
+              for doing even more see our <a className = "link" href = "/docs" title = "api documentation">api documentation</a>
+            </p>
           </div>
         </div>
         <Navigation />
