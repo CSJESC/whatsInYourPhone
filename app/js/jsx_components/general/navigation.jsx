@@ -15,7 +15,7 @@ var Navigation = React.createClass({
       return (
         <span>
           <li className ="nav-item">
-            <a className = "nav-link" href = "/docs">API documentation</a>
+            <a className = "nav-link" target = "_blank" href = "/docs">API documentation</a>
           </li>
         </span>
       )
