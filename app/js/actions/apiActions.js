@@ -36,6 +36,11 @@ apiActions.loadCountries.preEmit = function() {
     .then(apiActions.loadCountriesSuccsess, apiActions.error);
 };
 var updateCountryShares = function (material) {
+  if (material.minedIn.length == 0) {
+    apiActions.materialChangeSuccess()
+    return
+  }
+
   var count = 0
   var isSuccess = function (data) {
     count += 1
@@ -45,6 +50,9 @@ var updateCountryShares = function (material) {
   // get list of shares for material
   MaterialApi.loadCountryShares(material.id)
     .then(function (shares) {
+      if (shares.length == 0) {
+        apiActions.materialChangeSuccess()
+      }
       shares.forEach(function (share) {
         share.share = parseInt(material.shares[share.country_materials])
         MaterialApi.updateCountryShares(share)

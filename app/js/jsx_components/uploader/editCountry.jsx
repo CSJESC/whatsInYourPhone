@@ -54,12 +54,12 @@ var EditMaterial = React.createClass({
         <form id="new_resource">
             <div className="group">
                 <input 
-                  id       = "res_name" 
-                  name     = "res_name" 
-                  type     = "text" 
-                  required = "" 
-                  value    = {country? country.name : ''}
-                  onChange = {this.updateTextfield.bind(null,'name')}
+                  id           = "res_name" 
+                  name         = "res_name" 
+                  type         = "text" 
+                  required     = "" 
+                  defaultValue = {country? country.name : ''}
+                  onChange     = {this.updateTextfield.bind(null,'name')}
                 />
                 <span className="highlight"></span>
                 <span className="bar"></span>
@@ -69,7 +69,7 @@ var EditMaterial = React.createClass({
                 <input 
                   type     = "text" 
                   required = "" 
-                  value    = {country? country.humanRightsRating : ''}
+                  defaultValue = {country? country.humanRightsRating : ''}
                   onChange = {this.updateTextfield.bind(null,'humanRightsRating')}
                 />
                 <span className="highlight"></span>
@@ -78,12 +78,12 @@ var EditMaterial = React.createClass({
             </div>
             <div className="group">
                 <input 
-                  id       = "res_nfpa_health" 
-                  name     = "res_nfpa_health" 
-                  type     = "text" 
-                  required = "" 
-                  value    = {country? country.mineralIndustryRating : ''}
-                  onChange = {this.updateTextfield.bind(null,'mineralIndustryRating')}
+                  id           = "res_nfpa_health" 
+                  name         = "res_nfpa_health" 
+                  type         = "text" 
+                  required     = "" 
+                  defaultValue = {country? country.mineralIndustryRating : ''}
+                  onChange     = {this.updateTextfield.bind(null,'mineralIndustryRating')}
                 />
                 <span className="highlight"></span>
                 <span className="bar"></span>
@@ -91,12 +91,12 @@ var EditMaterial = React.createClass({
             </div>
             <div className="group">
                 <input 
-                  id       = "res_youtube" 
-                  name     = "res_youtube" 
-                  type     = "text" 
-                  required = "" 
-                  value    = {country? country.workingConditionsRating : ''}
-                  onChange = {this.updateTextfield.bind(null,'workingConditionsRating')}
+                  id           = "res_youtube" 
+                  name         = "res_youtube" 
+                  type         = "text" 
+                  required     = "" 
+                  defaultValue = {country? country.workingConditionsRating : ''}
+                  onChange     = {this.updateTextfield.bind(null,'workingConditionsRating')}
                 />
                 <span className="highlight"></span>
                 <span className="bar"></span>

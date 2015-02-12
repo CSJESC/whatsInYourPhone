@@ -73,12 +73,12 @@ var EditMaterial = React.createClass({
         <form id="new_resource">
             <div className="group">
                 <input 
-                  id       = "res_name" 
-                  name     = "res_name" 
-                  type     = "text" 
-                  required = "" 
-                  value    = {material? material.name : ''}
-                  onChange = {this.updateTextfield.bind(null,'name')}
+                  id           = "res_name" 
+                  name         = "res_name" 
+                  type         = "text" 
+                  required     = "" 
+                  defaultValue = {material? material.name : ''}
+                  onChange     = {this.updateTextfield.bind(null,'name')}
                 />
                 <span className="highlight"></span>
                 <span className="bar"></span>
@@ -86,12 +86,12 @@ var EditMaterial = React.createClass({
             </div>
             <div className="group">
                 <input 
-                  id       = "res_recyclability" 
-                  name     = "res_recyclability" 
-                  type     = "text" 
-                  required = "" 
-                  value    = {material? material.recyclingRating : ''}
-                  onChange = {this.updateTextfield.bind(null,'recyclingRating')}
+                  id           = "res_recyclability" 
+                  name         = "res_recyclability" 
+                  type         = "text" 
+                  required     = "" 
+                  defaultValue = {material? material.recyclingRating : ''}
+                  onChange     = {this.updateTextfield.bind(null,'recyclingRating')}
                 />
                 <span className="highlight"></span>
                 <span className="bar"></span>
@@ -99,12 +99,12 @@ var EditMaterial = React.createClass({
             </div>
             <div className="group">
                 <input 
-                  id       = "res_nfpa_health" 
-                  name     = "res_nfpa_health" 
-                  type     = "text" 
-                  required = "" 
-                  value    = {material? material.healthRating : ''}
-                  onChange = {this.updateTextfield.bind(null,'healthRating')}
+                  id           = "res_nfpa_health" 
+                  name         = "res_nfpa_health" 
+                  type         = "text" 
+                  required     = "" 
+                  defaultValue = {material? material.healthRating : ''}
+                  onChange     = {this.updateTextfield.bind(null,'healthRating')}
                 />
                 <span className="highlight"></span>
                 <span className="bar"></span>
@@ -112,12 +112,12 @@ var EditMaterial = React.createClass({
             </div>
             <div className="group">
                 <input 
-                  id       = "res_youtube" 
-                  name     = "res_youtube" 
-                  type     = "text" 
-                  required = "" 
-                  value    = {material? material.youtube : ''}
-                  onChange = {this.updateTextfield.bind(null,'youtube')}
+                  id           = "res_youtube" 
+                  name         = "res_youtube" 
+                  type         = "text" 
+                  required     = "" 
+                  defaultValue = {material? material.youtube : ''}
+                  onChange     = {this.updateTextfield.bind(null,'youtube')}
                 />
                 <span className="highlight"></span>
                 <span className="bar"></span>
@@ -125,12 +125,12 @@ var EditMaterial = React.createClass({
             </div>
             <div className="group">
                 <input 
-                  id       = "res_wikipedia_en" 
-                  name     = "res_wikipedia_en" 
-                  type     = "text" 
-                  required = "" 
-                  value    = {(material && material.links)? material.links.join(',') : ''}
-                  onChange = {this.updateTextfield.bind(null,'links')}
+                  id           = "res_wikipedia_en" 
+                  name         = "res_wikipedia_en" 
+                  type         = "text" 
+                  required     = "" 
+                  defaultValue = {(material && material.links)? material.links.join(',') : ''}
+                  onChange     = {this.updateTextfield.bind(null,'links')}
                 />
                 <span className="highlight"></span>
                 <span className="bar"></span>
@@ -138,13 +138,13 @@ var EditMaterial = React.createClass({
             </div>
             <div className="group">
                 <textarea 
-                  id       = "res_description" 
-                  name     = "res_description" 
-                  cols     = "40" 
-                  rows     = "5" 
-                  required = ""
-                  value    = {material? material.description : ''}
-                  onChange = {this.updateTextfield.bind(null,'description')}
+                  id           = "res_description" 
+                  name         = "res_description" 
+                  cols         = "40" 
+                  rows         = "5" 
+                  required     = ""
+                  defaultValue = {material? material.description : ''}
+                  onChange     = {this.updateTextfield.bind(null,'description')}
                 />
                 <span className="highlight"></span>
                 <span className="bar"></span>

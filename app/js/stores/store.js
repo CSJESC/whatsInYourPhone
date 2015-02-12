@@ -50,7 +50,6 @@ var Store = Reflux.createStore({
 
   onCheckLogin: function () {
     this.state.logedIn = (this.getCookie('OA') == 'true')
-    console.log(this.state.logedIn)
     this.trigger(this.state)
   },
 
