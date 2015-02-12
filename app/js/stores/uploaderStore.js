@@ -12,7 +12,7 @@ var Store = Reflux.createStore({
 
       editWindowOpen:          false,
       countriesWindowOpen:     false,
-      countriesEditWindowOpen: false
+      countriesEditWindowOpen: false,
     };
 
     this.listenTo(apiActions.loadMaterialSuccess,   this.onApiDidLoadMaterials);
@@ -23,6 +23,8 @@ var Store = Reflux.createStore({
 
     this.listenTo(uploaderActions.editMaterial,    this.onEditMaterial);
     this.listenTo(uploaderActions.toggleCountry,   this.onToggleCountry);
+    this.listenTo(uploaderActions.updateShare,     this.onUpdateShare);
+    
 
     this.listenTo(uploaderActions.listCountries,    this.onListCountries);
     this.listenTo(uploaderActions.editCountry,      this.onEditCountry);
@@ -52,6 +54,7 @@ var Store = Reflux.createStore({
   },
 
   onEditMaterial: function (material) {
+    window.scrollTo(0,0)
     this.closePopups()
     this.state.currentMaterial     = material
     this.state.editWindowOpen      = true
@@ -77,13 +80,44 @@ var Store = Reflux.createStore({
     this.trigger(this.state)
   },
 
+  onUpdateShare: function(material, countryId, xDiff) {
+    var oldShare    = material.shares[countryId]
+    var sliderWidth = oldShare * 4 + xDiff
+    share = sliderWidth / 4
+
+    if (share > 100) share = 100
+    if (share < 0)   share = 0
+    
+    material.shares[countryId] = share
+
+    // reduce difference from other shares
+    var leftover = 100 - share
+
+    for (share in material.shares) {
+      if (share != countryId) {
+        // update all according to thier share
+        var divisor = (100 - oldShare)
+        if (divisor > 0) {
+          material.shares[share] = leftover * material.shares[share] / divisor
+        } else {
+          material.shares[share] = 0
+        }
+      }
+
+    }
+
+    this.trigger(this.state)
+  },
+
   onListCountries: function() {
+    window.scrollTo(0,0)
     this.closePopups()
     this.state.countriesWindowOpen = true
     this.trigger(this.state)
   },
 
   onEditCountry: function(country) {
+    window.scrollTo(0,0)
     this.closePopups()
     this.state.countriesEditWindowOpen = true
     this.state.currentCountry          = country

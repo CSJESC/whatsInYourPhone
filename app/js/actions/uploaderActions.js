@@ -6,6 +6,7 @@ var uploaderActions = Reflux.createActions([
   'toggleCountry',
   'listCountries',
   'editCountry',
+  'updateShare'
 ]);
 
 module.exports = uploaderActions;

@@ -24,3 +24,31 @@
       &.selected
         background-color orange
         transition background-color 0.5s
+        
+  .share-slider
+    margin 10px auto
+    .country
+      width   100%
+      padding 5px 0
+      clear   left
+      line-height 20px
+      user-select none
+      cursor      default
+    .slider
+      position         relative
+      color            white
+      background-color grey
+      border-right     1px solid black
+      height           20px
+      float            left
+      margin-right     30px
+      &:after
+        content          ' '
+        position         absolute
+        top              0
+        right            -15px
+        width            15px
+        height           100%
+        background-color orange
+        cursor           grab
+      

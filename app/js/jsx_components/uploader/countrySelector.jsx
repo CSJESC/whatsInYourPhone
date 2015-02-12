@@ -9,12 +9,6 @@ var cx = React.addons.classSet
 var CountrySelector = React.createClass({
 
   listCountries: function(material, countries) {
-    if (material.minedIn && typeof material.minedIn[0] === 'object'){
-      material.minedIn = material.minedIn.map(function(country) {
-        return country.id
-      })
-    }
-
     return countries.map(function(country) {
       var classes = cx({
         'country':  true,

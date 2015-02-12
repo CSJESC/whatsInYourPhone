@@ -5,6 +5,8 @@ var apiActions      = require('../../actions/apiActions')
 var uploaderActions = require('../../actions/uploaderActions')
 
 var CountrySelector = require('./countrySelector.jsx')
+var ShareSlider     = require('./shareSlider.jsx')
+
 
 var EditMaterial = React.createClass({
 
@@ -22,6 +24,18 @@ var EditMaterial = React.createClass({
       material: {
         isNew: true
       }
+    }
+  },
+
+  componentWillMount: function () {
+    this.minedInToIds()
+  },
+
+  minedInToIds: function () {
+    if (this.props.material.minedIn && typeof this.props.material.minedIn[0] === 'object'){
+      this.props.material.minedIn = this.props.material.minedIn.map(function(country) {
+        return country.id
+      })
     }
   },
 
@@ -140,6 +154,10 @@ var EditMaterial = React.createClass({
               <CountrySelector
                material  = {this.props.material}
                countries = {this.props.countries}
+              />
+              <ShareSlider
+                material  = {this.props.material}
+                countries = {this.props.countries}
               />
             </div>
             <div className="submit-wrapper">

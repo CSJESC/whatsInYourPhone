@@ -4,8 +4,6 @@ var React = require('react');
 var apiActions      = require('../../actions/apiActions')
 var uploaderActions = require('../../actions/uploaderActions')
 
-var CountrySelector = require('./countrySelector.jsx')
-
 var EditMaterial = React.createClass({
 
   componentDidEnter: function() {
