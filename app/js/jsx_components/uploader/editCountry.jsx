@@ -19,7 +19,7 @@ var EditMaterial = React.createClass({
 
   getDefaultProps: function() {
     return {
-      material: {
+      country: {
         isNew: true
       }
     }
@@ -27,25 +27,23 @@ var EditMaterial = React.createClass({
 
   saveValues: function (evt) {
     evt.preventDefault()
-    if (this.props.material.isNew) {
-      apiActions.createMaterial(this.props.material)
+    if (this.props.country.isNew) {
+      apiActions.createCountry(this.props.country)
     } else {
-      apiActions.updateMaterial(this.props.material)
+      apiActions.updateCountry(this.props.country)
     }
   },
 
   updateTextfield: function (field, evt) {
     var value = evt.target.value
-    if (['usedIn','links'].indexOf(field) >= 0) {
-      value = value.split(',')
-    }
+
     if (value == '') value = null
-    this.props.material[field] = value
+    this.props.country[field] = value
     uploaderActions.triggerState()
   },
 
   render: function () {
-    var material = this.props.material
+    var country = this.props.country
     return (
       <div className="add-menu" id="resources">
         <a 
@@ -53,8 +51,8 @@ var EditMaterial = React.createClass({
           onClick   = {uploaderActions.closePopup}>
           X
         </a>
-        <h2>{material.isNew? 'New' : 'Edit'} Resource</h2>
-        <p>Please fill out all pieces of data which are necessary to add a new resource to the resource collection.</p>
+        <h2>{country.isNew? 'New' : 'Edit'} Country</h2>
+        <p>Please fill out all pieces of data which are necessary to add a new country to the collection.</p>
         <form id="new_resource">
             <div className="group">
                 <input 
@@ -62,7 +60,7 @@ var EditMaterial = React.createClass({
                   name     = "res_name" 
                   type     = "text" 
                   required = "" 
-                  value    = {material? material.name : ''}
+                  value    = {country? country.name : ''}
                   onChange = {this.updateTextfield.bind(null,'name')}
                 />
                 <span className="highlight"></span>
@@ -71,16 +69,14 @@ var EditMaterial = React.createClass({
             </div>
             <div className="group">
                 <input 
-                  id       = "res_recyclability" 
-                  name     = "res_recyclability" 
                   type     = "text" 
                   required = "" 
-                  value    = {material? material.recyclingRating : ''}
-                  onChange = {this.updateTextfield.bind(null,'recyclingRating')}
+                  value    = {country? country.humanRightsRating : ''}
+                  onChange = {this.updateTextfield.bind(null,'humanRightsRating')}
                 />
                 <span className="highlight"></span>
                 <span className="bar"></span>
-                <label>Recyclability (%)</label>
+                <label>humanRightsRating (0 - 100)</label>
             </div>
             <div className="group">
                 <input 
@@ -88,12 +84,12 @@ var EditMaterial = React.createClass({
                   name     = "res_nfpa_health" 
                   type     = "text" 
                   required = "" 
-                  value    = {material? material.healthRating : ''}
-                  onChange = {this.updateTextfield.bind(null,'healthRating')}
+                  value    = {country? country.mineralIndustryRating : ''}
+                  onChange = {this.updateTextfield.bind(null,'mineralIndustryRating')}
                 />
                 <span className="highlight"></span>
                 <span className="bar"></span>
-                <label>NFPA Health Rating</label>
+                <label>mineral Industry Rating (0- 70)</label>
             </div>
             <div className="group">
                 <input 
@@ -101,46 +97,12 @@ var EditMaterial = React.createClass({
                   name     = "res_youtube" 
                   type     = "text" 
                   required = "" 
-                  value    = {material? material.youtube : ''}
-                  onChange = {this.updateTextfield.bind(null,'youtube')}
+                  value    = {country? country.workingConditionsRating : ''}
+                  onChange = {this.updateTextfield.bind(null,'workingConditionsRating')}
                 />
                 <span className="highlight"></span>
                 <span className="bar"></span>
-                <label>YouTube Link</label>
-            </div>
-            <div className="group">
-                <input 
-                  id       = "res_wikipedia_en" 
-                  name     = "res_wikipedia_en" 
-                  type     = "text" 
-                  required = "" 
-                  value    = {(material && material.links)? material.links.join(',') : ''}
-                  onChange = {this.updateTextfield.bind(null,'links')}
-                />
-                <span className="highlight"></span>
-                <span className="bar"></span>
-                <label>Links (comma-separated)</label>
-            </div>
-            <div className="group">
-                <textarea 
-                  id       = "res_description" 
-                  name     = "res_description" 
-                  cols     = "40" 
-                  rows     = "5" 
-                  required = ""
-                  value    = {material? material.description : ''}
-                  onChange = {this.updateTextfield.bind(null,'description')}
-                />
-                <span className="highlight"></span>
-                <span className="bar"></span>
-                <label className="desc_label">Description</label>
-            </div>
-            <div className="group">
-              <label className = "mined-in-label">Mined In:</label>
-              <CountrySelector
-               material  = {this.props.material}
-               countries = {this.props.countries}
-              />
+                <label>working Conditions Rating (0 - 4)</label>
             </div>
             <div className="submit-wrapper">
                 <button

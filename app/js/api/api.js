@@ -33,6 +33,20 @@ var Api = {
     });
   },
 
+  updateCountry: function (country) {
+    return reqwest({
+      url:  config.apiPrefix + config.endpoints.countries + '/update/' + country.id,
+      data: country
+    });
+  },
+
+  createCountry: function (country) {
+    return reqwest({
+      url:  config.apiPrefix + config.endpoints.countries + '/create/',
+      data: country
+    });
+  },
+
   updateMaterial: function (material) {
     // clean up material before we send it
     delete material.usedIn
@@ -52,7 +66,6 @@ var Api = {
       data: dataString
     });
     return req
-
   }
 }
 module.exports = Api;

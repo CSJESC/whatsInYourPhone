@@ -22,9 +22,6 @@ var MaterialList = React.createClass({
             <div className = "headline-left">
             <h3>{material.name}</h3>
             </div>
-              <div className="score">
-                Score: <span className = "green-rating">{material.totalRating}</span>
-              </div>
             <div className="edit">
                 <a 
                   id      = {material.id} 

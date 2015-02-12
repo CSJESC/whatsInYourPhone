@@ -12,7 +12,11 @@ var apiActions = Reflux.createActions([
 
   'updateMaterial',
   'createMaterial',
-  'materialChangeSuccess'
+  'materialChangeSuccess',
+
+  'updateCountry',
+  'createCountry',
+  'countryChangeSuccess'
 ]);
 
 apiActions.loadDeviceMaterials.preEmit = function() {
@@ -47,6 +51,18 @@ apiActions.createMaterial.preEmit = function() {
 
 apiActions.materialChangeSuccess.preEmit = function() {
   apiActions.loadDeviceMaterials()
+};
+
+apiActions.updateCountry.preEmit = function() {
+  var country = arguments[0]  
+  MaterialApi.updateCountry(country)
+    .then(apiActions.countryChangeSuccess, apiActions.error);
+};
+
+apiActions.createCountry.preEmit = function() {
+  var country = arguments[0]  
+  MaterialApi.createCountry(country)
+    .then(apiActions.countryChangeSuccess, apiActions.error);
 };
 
 module.exports = apiActions;

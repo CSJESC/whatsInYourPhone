@@ -18,7 +18,7 @@ var CountrySelector = React.createClass({
     return countries.map(function(country) {
       var classes = cx({
         'country':  true,
-        'selected': (material.minedIn.indexOf(country.id) >= 0),
+        'selected': (material.minedIn && material.minedIn.indexOf(country.id) >= 0),
       })
 
       return (

@@ -9,7 +9,9 @@ var uploaderActions = require('../actions/uploaderActions')
 var TransitionGroup = React.addons.TransitionGroup
 
 var MaterialList = require('./uploader/materialList.jsx')
+var CountryList  = require('./uploader/countryList.jsx')
 var EditMaterial = require('./uploader/editMaterial.jsx')
+var EditCountry  = require('./uploader/editCountry.jsx')
 var Navigation   = require('./general/navigation.jsx')
 
 var Uploader = React.createClass({
@@ -33,12 +35,22 @@ var Uploader = React.createClass({
     if (this.state.editWindowOpen && this.state.currentMaterial)
       return (
         <EditMaterial 
+          key       = 'a'
           material  = {this.state.currentMaterial} 
           countries = {this.state.countries}
         />
       )
     if (this.state.editWindowOpen)
-      return <EditMaterial countries = {this.state.countries} />
+      return <EditMaterial key = 'b' countries = {this.state.countries} />
+
+    if (this.state.countriesWindowOpen)
+      return <CountryList key = 'c' countries = {this.state.countries} />
+
+    if (this.state.countriesEditWindowOpen && this.state.currentCountry)
+      return <EditCountry key = 'd' country = {this.state.currentCountry} />
+
+    if (this.state.countriesEditWindowOpen)
+      return <EditCountry key = 'e' />
   },
 
   render: function () {
@@ -59,6 +71,7 @@ var Uploader = React.createClass({
                 <a 
                   id="country-btn" 
                   className="button"
+                  onClick   = {uploaderActions.listCountries}
                 >
                     <span>Edit Countries</span>
                 </a>
@@ -66,7 +79,8 @@ var Uploader = React.createClass({
                 <a 
                   id        = "resource-btn" 
                   className = "button"
-                  onClick   = {uploaderActions.editMaterial.bind(null, null)}>
+                  onClick   = {uploaderActions.editMaterial.bind(null, null)}
+                >
                     <span>Add Resource</span>
                 </a>
             </div>

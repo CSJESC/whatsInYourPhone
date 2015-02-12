@@ -1,9 +1,11 @@
 var Reflux = require('reflux');
 var uploaderActions = Reflux.createActions([
   'editMaterial',
-  'closeEditWindow',
-  'updateMaterial',
-  'toggleCountry'
+  'closePopup',
+  'triggerState',
+  'toggleCountry',
+  'listCountries',
+  'editCountry',
 ]);
 
 module.exports = uploaderActions;
