@@ -61,6 +61,7 @@ var Store = Reflux.createStore({
   onLogInCloseClicked: function () {
     this.state.logInPopupOpen = false
     this.trigger(this.state)
+    setTimeout(this.onCheckLogin.bind(this),5000)
   },
 
   onLogInClicked: function () {
