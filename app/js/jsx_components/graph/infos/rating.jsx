@@ -29,9 +29,9 @@ var Rating = React.createClass({
             <li className ="country block">
               Country Rating: 60%
               <ul className = "country-chart">
-                <li className ="working block">working Conditions: 50%</li>
-                <li className ="human block">human Rights: 30%</li>
-                <li className ="mineral block">mineral Industry Rating: 20%</li>
+                <li className ="working block">Working Conditions: 50%</li>
+                <li className ="human block">Human Rights: 30%</li>
+                <li className ="mineral block">Mineral Industry Rating: 20%</li>
               </ul>
             </li>
           </ul>
