@@ -21,7 +21,12 @@ var Infos = React.createClass({
         />
       )
     } else {
-      return (<StartPage />)
+      return (
+        <StartPage 
+          isLastCart = {this.props.isLastCart} 
+          cartOffset = {this.props.fromStore.cartOffset} 
+        />
+      )
     }
   },
 

@@ -1,6 +1,8 @@
 "use strict";
 
-var React      = require('react');
+var React    = require('react');
+var NextLink = require('./nextLink.jsx');
+
 
 var StartPage = React.createClass({
   render: function () {
@@ -20,6 +22,7 @@ var StartPage = React.createClass({
           economic justice issues at hand.  If you want to help fill out our
           material models please (click on the right/contact us).
         </p>
+        <NextLink {...this.props} />
       </div>
     )
   }

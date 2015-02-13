@@ -7,6 +7,7 @@ var guiActions = require('../../actions/guiActions');
 var Cart      = require('./cart.jsx');
 var Infos     = require('./infos.jsx');
 var StopLight = require('./stopLight.jsx');
+var NextLink  = require('./nextLink.jsx');
 
 
 var Page = React.createClass({
@@ -34,25 +35,6 @@ var Page = React.createClass({
 
   reload: function () {
     location.reload()
-  },
-
-  nextLink: function (isLastCart) {
-    var offset = this.props.fromStore.cartOffset
-
-    if (!isLastCart) {
-      return (
-        <a 
-          className = "next" 
-          onClick   = {guiActions.moveCarts}
-        > 
-          <span className = 'icono-caretLeft'/>
-          {offset < 0 ? 'start' : 'next'}
-          
-        </a>
-      )
-    } else {
-      return null
-    }
   },
 
   skipLink: function (isLastCart, isRunning) {
@@ -98,7 +80,10 @@ var Page = React.createClass({
 
     return (
       <div className = "carts">
-        {this.nextLink(isLastCart)}
+        <NextLink 
+          isLastCart = {isLastCart}
+          cartOffset = {this.props.fromStore.cartOffset}
+        />
         {this.skipLink(isLastCart, isAutoSkipping)}
         <span className = "carts-list">
           <ReactCSSTransitionGroup transitionName = "move-carts">
@@ -110,6 +95,7 @@ var Page = React.createClass({
           material       = {currentMaterial} 
           colors         = {this.props.fromStore.COLORS}
           fromStore      = {this.props.fromStore}
+          isLastCart     = {isLastCart}
         />
         <StopLight 
           color       = {currentMaterial? currentMaterial.color : null} 
