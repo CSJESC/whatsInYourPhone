@@ -25,7 +25,7 @@ var Rating = React.createClass({
 
           <ul className = "weighting-chart">
             <li className ="health block">Health: 20%</li>
-            <li className ="recicling block">Recicability: 20%</li>
+            <li className ="recicling block">Recyclability: 20%</li>
             <li className ="country block">
               Country Rating: 60%
               <ul className = "country-chart">

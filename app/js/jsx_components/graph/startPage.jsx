@@ -22,7 +22,6 @@ var StartPage = React.createClass({
           economic justice issues at hand.  If you want to help fill out our
           material models please (click on the right/contact us).
         </p>
-        <NextLink {...this.props} />
       </div>
     )
   }

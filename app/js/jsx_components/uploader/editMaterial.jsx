@@ -95,7 +95,7 @@ var EditMaterial = React.createClass({
                 />
                 <span className="highlight"></span>
                 <span className="bar"></span>
-                <label>Recyclability (%)</label>
+                <label>Recyclability (1 - 5)</label>
             </div>
             <div className="group">
                 <input 
