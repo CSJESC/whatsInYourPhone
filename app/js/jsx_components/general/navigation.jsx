@@ -39,6 +39,9 @@ var Navigation = React.createClass({
           <li className ="nav-item">
             <a className = "nav-link" href = "/impressum.html">Impressum</a>
           </li>
+          <li className ="nav-item">
+            <a className = "nav-link" href = "/dokumentation.html">Doku</a>
+          </li>
           
         </ul>
       </nav>
